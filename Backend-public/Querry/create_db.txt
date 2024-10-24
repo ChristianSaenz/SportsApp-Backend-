@@ -1,0 +1,202 @@
+﻿--Table: course
+CREATE TABLE course (
+    course_id INT PRIMARY KEY,
+    sport_id INT,
+    course_name VARCHAR(255),
+    course_location VARCHAR(255),
+    created_at TIMESTAMP
+);
+
+--Table: sport
+CREATE TABLE sport (
+    sport_id INT PRIMARY KEY,
+    sport_name VARCHAR(255)
+);
+
+--Table: league
+CREATE TABLE league (
+    league_id INT PRIMARY KEY,
+    sport_id INT,
+    league_name VARCHAR(255),
+    FOREIGN KEY (sport_id) REFERENCES sport(sport_id)
+);
+
+--Table: team
+CREATE TABLE team (
+    team_id INT PRIMARY KEY,
+    league_id INT,
+    team_name VARCHAR(255),
+    FOREIGN KEY (league_id) REFERENCES league(league_id)
+);
+
+--Table: match
+CREATE TABLE match (
+    match_id INT PRIMARY KEY,
+    team_id INT,
+    match_time TIMESTAMP,
+    match_date DATE,
+    match_status VARCHAR(255),
+    FOREIGN KEY (team_id) REFERENCES team(team_id)
+);
+
+--Table: player
+CREATE TABLE player (
+    player_id INT PRIMARY KEY,
+    team_id INT,
+    firstname VARCHAR(255),
+    lastname VARCHAR(255),
+    position VARCHAR(50),
+    age INT,
+    FOREIGN KEY (team_id) REFERENCES team(team_id)
+);
+
+--Table: player_stat
+CREATE TABLE player_stat (
+    player_stat_id INT PRIMARY KEY,
+    player_id INT,
+    sport_id INT,
+    points INT,
+    assists INT,
+    saves INT,
+    mins_played INT,
+    FOREIGN KEY (player_id) REFERENCES player(player_id),
+    FOREIGN KEY (sport_id) REFERENCES sport(sport_id)
+);
+
+--Table: user
+CREATE TABLE user (
+    user_id INT PRIMARY KEY,
+    username VARCHAR(255),
+    password VARCHAR(255),
+    firstname VARCHAR(255),
+    lastname VARCHAR(255)
+);
+
+--Table: favorite
+CREATE TABLE favorite (
+    favorite_id INT PRIMARY KEY,
+    user_id INT,
+    player_id INT,
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    FOREIGN KEY (player_id) REFERENCES player(player_id)
+);
+
+--Table: role
+CREATE TABLE role (
+    role_id INT PRIMARY KEY,
+    role_name VARCHAR(255),
+    role_description VARCHAR(255)
+);
+
+--Table: permission
+CREATE TABLE permission (
+    permission_id INT PRIMARY KEY,
+    permission_name VARCHAR(255),
+    description VARCHAR(255)
+);
+
+--Table: user_role(Composite Key)
+CREATE TABLE user_role (
+    user_id INT,
+    role_id INT,
+    PRIMARY KEY (user_id, role_id),
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    FOREIGN KEY (role_id) REFERENCES role(role_id)
+);
+
+--Table: role_permission(Composite Key)
+CREATE TABLE role_permission (
+    role_id INT,
+    permission_id INT,
+    PRIMARY KEY (role_id, permission_id),
+    FOREIGN KEY (role_id) REFERENCES role(role_id),
+    FOREIGN KEY (permission_id) REFERENCES permission(permission_id)
+);
+
+--Table: ufc_stats
+CREATE TABLE ufc_stats (
+    ufc_stat_id INT PRIMARY KEY,
+    player_id INT,
+    wins INT,
+    losses INT,
+    takedowns INT,
+    knockdowns INT,
+    submission_attempts INT,
+    FOREIGN KEY (player_id) REFERENCES player(player_id)
+);
+
+--Table: football_stats
+CREATE TABLE football_stats (
+    football_stat_id INT PRIMARY KEY,
+    player_id INT,
+    passing_yards INT,
+    rushing_yards INT,
+    receiving_yards INT,
+    tackles INT,
+    FOREIGN KEY (player_id) REFERENCES player(player_id)
+);
+
+--Table: f1_stats
+CREATE TABLE f1_stats (
+    f1_stat_id INT PRIMARY KEY,
+    player_id INT,
+    races_finished INT,
+    podium_finishes INT,
+    wins INT,
+fastest_lap INT,
+    FOREIGN KEY (player_id) REFERENCES player(player_id)
+);
+
+--Table: golf_stats
+CREATE TABLE golf_stats (
+    golf_stat_id INT PRIMARY KEY,
+    player_id INT,
+    driving_average FLOAT,
+    greens_in_regulation FLOAT,
+    putting_average FLOAT,
+    FOREIGN KEY (player_id) REFERENCES player(player_id)
+);
+
+--Table: tennis_stats
+CREATE TABLE tennis_stats (
+    tennis_stat_id INT PRIMARY KEY,
+    player_id INT,
+    aces INT,
+    double_faults INT,
+    first_serve_percentage FLOAT,
+    FOREIGN KEY (player_id) REFERENCES player(player_id)
+);
+
+--Table: hockey_stats
+CREATE TABLE hockey_stats (
+    hockey_stat_id INT PRIMARY KEY,
+    player_id INT,
+    goals INT,
+    assists INT,
+    blocked_shots INT,
+    FOREIGN KEY (player_id) REFERENCES player(player_id)
+);
+
+--Table: basketball_stats
+CREATE TABLE basketball_stats (
+    basketball_stat_id INT PRIMARY KEY,
+    player_id INT,
+    points_per_game FLOAT,
+    rebounds_per_game FLOAT,
+    assists_per_game FLOAT,
+    field_goal_percentage FLOAT,
+    three_point_percentage FLOAT,
+blocks INT,
+    FOREIGN KEY (player_id) REFERENCES player(player_id)
+);
+
+--Table: soccer_stats
+CREATE TABLE soccer_stats (
+    soccer_stat_id INT PRIMARY KEY,
+    player_id INT,
+    goals INT,
+    assists INT,
+    passes_completed INT,
+    tackles INT,
+    FOREIGN KEY (player_id) REFERENCES player(player_id)
+);
