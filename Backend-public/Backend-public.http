@@ -1,0 +1,6 @@
+@Backend_public_HostAddress = http://localhost:5043
+
+GET {{Backend_public_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
