@@ -2,7 +2,7 @@
 
 ## Overview
 
-Sportify is a sports standings app that provides a comprehensive platform for users to track multiple sports, including Football, Soccer, Basketball, Hockey, UFC, F1, Tennis, and Golf. Users can view upcoming matches, follow live scores, explore detailed team and player stats, and access introductory information about each sport. The app also allows users to save their favorite players and view their information.
+Sportify is a sports standings app that provides a comprehensive platform for users to track multiple sports, including Football, Soccer, Basketball, Hockey, UFC, F1, and Tennis. Users can view upcoming matches, follow live scores, and access introductory information about each sport. The app also allows users to save their favorite players and view their information
 
 This repository contains the **backend** of the app, built using **ASP.NET**. The backend is responsible for managing API endpoints, database interactions, and business logic.
 
