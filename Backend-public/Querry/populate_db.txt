@@ -1,161 +1,371 @@
-﻿-- Populate the 'sport' table
-INSERT INTO sport (sport_id, sport_name) 
-VALUES 
-(1, 'Basketball'),
+﻿INSERT INTO sport (sport_id, sport_name)
+VALUES
+(1, 'Football'),
 (2, 'Soccer'),
-(3, 'UFC'),
-(4, 'Football'),
-(5, 'Tennis');
+(3, 'Basketball'),
+(4, 'Tennis'),
+(5, 'MMA'),
+(6, 'Hockey'),
+(7, 'Baseball'),
+(8, 'F1'),
+(9, 'Rugby');
 
--- Populate the 'league' table
-INSERT INTO league (league_id, sport_id, league_name) 
+
+
+INSERT INTO league (league_id, league_name, sport_id)
+VALUES
+(1, 'NBA', 3),
+(2, 'NFL', 1),
+(3, 'English Premier League', 2),
+(4, 'NBA', 3),
+(5, 'ATP Tennis', 4),
+(6, 'UFC Featherweight Women', 5),
+(7, 'NHL', 6),
+(8, 'MLB', 7),
+(9, 'Formula 1', 8),
+(10, 'WTA Tennis', 4),
+(11, 'NRL', 9),
+(12, 'Spanish La Liga', 2),
+(13, 'Major League Soccer', 2),
+(14, 'German Bundesliga', 2),
+(15, 'Italian Serie A', 2),
+(16, 'UFC Bantamweight', 5),
+(17, 'UFC Bantamweight Women', 5),
+(18, 'UFC Catchweight', 5),
+(19, 'UFC Featherweight', 5),
+(20, 'UFC Flyweight', 5),
+(21, 'UFC Flyweight Women', 5),
+(22, 'UFC Heavyweight', 5),
+(23, 'UFC Light Heavyweight', 5),
+(24, 'UFC Lightweight', 5),
+(25, 'UFC Middleweight', 5),
+(26, 'UFC Strawweight Women', 5),
+(27, 'UFC Welterweight', 5);
+
+INSERT INTO team (team_id, league_id, team_name)
+VALUES
+(1, 2, 'Miami Dolphins'),
+(2, 2, 'Minnesota Vikings'),
+(3, 2, 'New England Patriots'),
+(4, 7, 'Buffalo Sabres'),
+(5, 7, 'Calgary Flames'),
+(6, 11, 'Brisbane Broncos'),
+(7, 11, 'Canberra Raiders');
+
+INSERT INTO permission (permission_id, name, description)
 VALUES 
-(1, 1, 'NBA'),
-(2, 2, 'Premier League'),
-(3, 3, 'UFC League'),
-(4, 4, 'NFL'),
-(5, 5, 'ATP Tour');
-
--- Populate the 'team' table
-INSERT INTO team (team_id, league_id, team_name) 
-VALUES 
-(1, 1, 'Los Angeles Lakers'),
-(2, 2, 'Manchester United'),
-(3, 3, 'UFC Team A'),
-(4, 4, 'Dallas Cowboys'),
-(5, 5, 'Rafael Nadal Team');
-
--- Populate the 'player' table
-INSERT INTO player (player_id, team_id, firstname, lastname, position, age) 
-VALUES 
-(1, 1, 'LeBron', 'James', 'Forward', 36),
-(2, 2, 'Cristiano', 'Ronaldo', 'Forward', 37),
-(3, 3, 'Khabib', 'Nurmagomedov', 'Fighter', 33),
-(4, 4, 'Dak', 'Prescott', 'Quarterback', 29),
-(5, 5, 'Rafael', 'Nadal', 'Player', 35);
-
--- Populate the 'match' table
-INSERT INTO match (match_id, team_id, match_time, match_date, match_status) 
-VALUES 
-(1, 1, '2024-10-24 18:00:00', '2024-10-24', 'Completed'),
-(2, 2, '2024-10-25 19:00:00', '2024-10-25', 'Scheduled'),
-(3, 3, '2024-10-26 20:00:00', '2024-10-26', 'Completed'),
-(4, 4, '2024-10-27 21:00:00', '2024-10-27', 'Scheduled'),
-(5, 5, '2024-10-28 22:00:00', '2024-10-28', 'Completed');
-
--- Populate the 'player_stat' table
-INSERT INTO player_stat (player_stat_id, player_id, sport_id, points, assists, saves, mins_played) 
-VALUES 
-(1, 1, 1, 30, 8, 0, 38),
-(2, 2, 2, 2, 1, 0, 90),
-(3, 3, 3, 1, 0, 5, 25),
-(4, 4, 4, 300, 0, 0, 60),
-(5, 5, 5, 0, 0, 0, 180);
-
--- Populate the 'role' table
-INSERT INTO role (role_id, role_name, role_description) 
-VALUES 
-(1, 'admin', 'Administrator role'),
-(2, 'user', 'Regular user role');
+(1, 'View Teams', 'Can view teams'),
+(2, 'Add Favorites', 'Can add favorite players'),
+(3, 'Manage Teams', 'Can add, update, delete teams'),
+(4, 'Manage Players', 'Can add, update, delete players');
 
 
--- Populate the 'ufc_stats' table
-INSERT INTO ufc_stats (ufc_stat_id, player_id, wins, losses, takedowns, knockdowns, submission_attempts) 
-VALUES 
-(1, 3, 29, 0, 5, 8, 3),
-(2, 3, 25, 1, 6, 7, 4),
-(3, 3, 30, 0, 10, 9, 5),
-(4, 3, 27, 2, 4, 3, 2),
-(5, 3, 28, 3, 5, 5, 6);
+INSERT INTO role (role_id, role_name, role_description)
+VALUES
+(1, 'Admin', 'Administrator with full control'),
+(2, 'User', 'Regular user with limited access'),
+(3, 'Guest', 'Unregistered user with limited access');
 
--- Populate the 'football_stats' table
-INSERT INTO football_stats (football_stat_id, player_id, passing_yards, rushing_yards, receiving_yards, tackles) 
-VALUES 
-(1, 4, 4000, 300, 0, 0),
-(2, 4, 4500, 400, 0, 0),
-(3, 4, 4800, 500, 0, 0),
-(4, 4, 5000, 600, 0, 0),
-(5, 4, 5200, 700, 0, 0);
 
--- Populate the 'f1_stats' table
-INSERT INTO f1_stats (f1_stat_id, player_id, races_finished, podium_finishes, wins, fastest_lap) 
-VALUES 
-(1, 5, 200, 50, 20, 10),
-(2, 5, 210, 55, 22, 12),
-(3, 5, 220, 60, 25, 14),
-(4, 5, 230, 65, 27, 16),
-(5, 5, 240, 70, 30, 18);
+INSERT INTO role_permission (role_id, permission_id)
+VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(2, 1),
+(2, 2),
+(3, 1);
 
--- Populate the 'golf_stats' table
-INSERT INTO golf_stats (golf_stat_id, player_id, driving_average, greens_in_regulation, putting_average) 
-VALUES 
-(1, 5, 280.5, 70.4, 1.85),
-(2, 5, 285.0, 72.1, 1.83),
-(3, 5, 290.0, 73.5, 1.80),
-(4, 5, 295.0, 75.0, 1.78),
-(5, 5, 300.0, 76.2, 1.75);
+Players:
 
--- Populate the 'tennis_stats' table
-INSERT INTO tennis_stats (tennis_stat_id, player_id, aces, double_faults, first_serve_percentage) 
-VALUES 
-(1, 5, 10, 2, 70.5),
-(2, 5, 12, 3, 72.0),
-(3, 5, 15, 4, 73.8),
-(4, 5, 18, 5, 75.1),
-(5, 5, 20, 6, 76.5);
+INSERT INTO player (team_id, firstname, lastname, position, nationality, weight, height, age) VALUES
+(1, 'Alec', 'Ingold', 'Fullback', 'United States', 109, 185, 28),
+(1, 'Andrew', 'Meyer', 'Center', 'United States', 134, 191, 24),
+(1, 'Anthony', 'Walker', 'Linebacker', 'United States', 107, 185, 29),
+(1, 'Austin', 'Jackson', 'Guard', 'United States', 147, 196, 25),
+(1, 'Benito', 'Jones', 'Defensive Lineman', 'United States', 152, 185, 27),
+(1, 'Brandon', 'Pili', 'Defensive Tackle', 'United States', 145, 191, 25),
+(1, 'Braxton', 'Berrios', 'Wide Receiver', 'United States', 86, 175, 29),
+(1, 'Calais', 'Campbell', 'Defensive End', 'United States', 133, 203, 38),
+(1, 'Channing', 'Tindall', 'Linebacker', 'United States', 107, 188, 24),
+(1, 'Chasen', 'Hines', 'Guard', 'United States', 150, 191, 24),
+(1, 'Chop', 'Robinson', 'Linebacker', 'United States', 115, 191, 22),
+(1, 'David', 'Long', 'Linebacker', 'United States', 103, 180, 27),
+(1, 'De''Von', 'Achane', 'Running Back', 'United States', 85, 175, 22),
+(1, 'Dee', 'Eskridge', 'Wide Receiver', 'United States', 86, 175, 27),
+(1, 'Duke', 'Riley', 'Linebacker', 'United States', 103, 185, 29),
+(1, 'Durham', 'Smythe', 'Tight End', 'United States', 112, 198, 29),
+(1, 'Elijah', 'Campbell', 'Safety', 'United States', 91, 180, 28),
+(1, 'Emmanuel', 'Ogbah', 'Linebacker', 'Nigeria', 125, 193, 31),
+(1, 'Erik', 'Ezukanma', 'Wide Receiver', 'United States', 93, 188, 24),
+(1, 'Ethan', 'Bonner', 'Cornerback', 'United States', 84, 185, 24),
+(1, 'Grant', 'DuBose', 'Wide Receiver', 'United States', 91, 188, 23),
+(1, 'Isaiah', 'Wynn', 'Offensive Tackle', 'United States', 141, 188, 28),
+(1, 'Jaelan', 'Phillips', 'Linebacker', 'United States', 119, 196, 25),
+(1, 'Jake', 'Bailey', 'Punter', 'United States', 97, 188, 27),
+(1, 'Jalen', 'Ramsey', 'Cornerback', 'United States', 94, 185, 30),
+(1, 'Jason', 'Sanders', 'Kicker', 'United States', 88, 180, 29),
+(1, 'Jaylen', 'Waddle', 'Wide Receiver', 'United States', 83, 178, 25),
+(1, 'Jaylen', 'Wright', 'Running Back', 'United States', 95, 178, 21),
+(1, 'Jeff', 'Wilson Jr.', 'Running Back', 'United States', 97, 183, 29),
+(1, 'Jonnu', 'Smith', 'Tight End', 'United States', 112, 191, 29),
+(1, 'Jordan', 'Poyer', 'Safety', 'United States', 87, 183, 33),
+(1, 'Jordyn', 'Brooks', 'Linebacker', 'United States', 109, 183, 26),
+(1, 'Julian', 'Hill', 'Tight End', 'United States', 114, 193, 24),
+(1, 'Kader', 'Kohou', 'Cornerback', 'Ivory Coast', 89, 178, 27),
+(1, 'Kendall', 'Lamm', 'Offensive Tackle', 'United States', 140, 196, 31),
+(1, 'Lester', 'Cotton Sr.', 'Guard', 'United States', 152, 193, 28),
+(1, 'Liam', 'Eichenberg', 'Offensive Tackle', 'United States', 141, 196, 26),
+(1, 'Malik', 'Washington', 'Wide Receiver', 'United States', 87, 173, 23),
+(1, 'Marcus', 'Maye', 'Safety', 'United States', 96, 183, 31),
+(1, 'Mohamed', 'Kamara', 'Linebacker', 'United States', 115, 185, 24),
+(1, 'Patrick', 'Paul', 'Offensive Tackle', 'United States', 150, 201, 23),
+(1, 'Quinton', 'Bell', 'Outside Linebacker', 'United States', 115, 193, 27),
+(1, 'Raheem', 'Mostert', 'Running Back', 'United States', 93, 178, 32),
+(1, 'River', 'Cracraft', 'Wide Receiver', 'United States', 90, 183, 29),
+(1, 'Robert', 'Jones', 'Guard', 'United States', 146, 193, 25),
+(1, 'Siran', 'Neal', 'Cornerback', 'United States', 93, 183, 30),
+(1, 'Skylar', 'Thompson', 'Quarterback', 'United States', 98, 188, 27),
+(1, 'Tanner', 'Conner', 'Tight End', 'United States', 103, 191, 25),
+(1, 'Terron', 'Armstead', 'Offensive Tackle', 'United States', 138, 196, 33);
 
--- Populate the 'hockey_stats' table
-INSERT INTO hockey_stats (hockey_stat_id, player_id, goals, assists, blocked_shots) 
-VALUES 
-(1, 1, 20, 15, 5),
-(2, 1, 22, 18, 6),
-(3, 1, 25, 20, 7),
-(4, 1, 28, 22, 8),
-(5, 1, 30, 25, 9);
 
--- Populate the 'basketball_stats' table
-INSERT INTO basketball_stats (basketball_stat_id, player_id, points_per_game, rebounds_per_game, assists_per_game, field_goal_percentage, three_point_percentage, blocks) 
-VALUES 
-(1, 1, 25.5, 8.0, 7.2, 51.3, 37.8, 1),
-(2, 1, 28.1, 9.0, 8.4, 52.2, 38.5, 2),
-(3, 1, 30.0, 10.0, 9.5, 53.5, 39.0, 3),
-(4, 1, 27.8, 8.5, 8.0, 50.8, 36.5, 2),
-(5, 1, 26.4, 7.9, 7.5, 51.0, 37.0, 1);
+INSERT INTO player (team_id, firstname, lastname, position, nationality, weight, height, age) VALUES
+(2, 'Aaron', 'Jones', 'Running Back', 'United States', 94, 175, 29),
+(2, 'Austin', 'Schlottmann', 'Guard', 'United States', 136, 198, 27),
+(2, 'Ben', 'Ellefson', 'Tight End', 'United States', 113, 191, 27),
+(2, 'Bisi', 'Johnson', 'Wide Receiver', 'United States', 95, 183, 26),
+(2, 'Blake', 'Brandel', 'Offensive Tackle', 'United States', 143, 201, 27),
+(2, 'Blake', 'Proehl', 'Wide Receiver', 'United States', 86, 185, 24),
+(2, 'Brandon', 'Powell', 'Wide Receiver', 'United States', 82, 173, 28),
+(2, 'Brett', 'Rypien', 'Quarterback', 'United States', 92, 188, 27),
+(2, 'Brian', 'Flores', 'Manager', 'United States', NULL, NULL, 42),
+(2, 'Brian', 'O''Neill', 'Offensive Tackle', 'United States', 141, 201, 28),
+(2, 'Byron', 'Murphy Jr.', 'Cornerback', 'United States', 86, 180, 25),
+(2, 'C.J.', 'Ham', 'Fullback', 'United States', 113, 180, 30),
+(2, 'Chris', 'Reed', 'Guard', 'United States', 142, 191, 31),
+(2, 'Christian', 'Darrisaw', 'Offensive Tackle', 'United States', 143, 196, 24),
+(2, 'Dalvin', 'Cook', 'Running Back', 'United States', 95, 178, 28),
+(2, 'Dan', 'Feeney', 'Guard', 'United States', 141, 193, 29),
+(2, 'David', 'Quessenberry', 'Offensive Tackle', 'United States', 141, 196, 33),
+(2, 'Ed', 'Ingram', 'Guard', 'United States', 139, 191, 24),
+(2, 'Eric', 'Kendricks', 'Middle Linebacker', 'United States', 105, 183, 31),
+(2, 'Garrett', 'Bradbury', 'Center', 'United States', 136, 191, 28),
+(2, 'Greg', 'Joseph', 'Kicker', 'United States', 94, 183, 29),
+(2, 'Harrison', 'Smith', 'Safety', 'United States', 99, 188, 34),
+(2, 'J.J.', 'McCarthy', 'Quarterback', 'United States', 99, 191, 21),
+(2, 'Jalen', 'Nailor', 'Wide Receiver', 'United States', 86, 183, 24),
+(2, 'Johnny', 'Mundt', 'Tight End', 'United States', 106, 193, 29),
+(2, 'Jordan', 'Addison', 'Wide Receiver', 'United States', 79, 180, 22),
+(2, 'Jordan', 'Hicks', 'Inside Linebacker', 'United States', 107, 185, 31),
+(2, 'Josh', 'Oliver', 'Tight End', 'United States', 113, 196, 26),
+(2, 'Justin', 'Jefferson', 'Wide Receiver', 'United States', 88, 185, 25),
+(2, 'Kene', 'Nwangwu', 'Running Back', 'United States', 95, 185, 25),
+(2, 'Michael', 'Jurgens', 'Center', 'United States', 141, 193, 23),
+(2, 'Mike', 'Zimmer', 'Manager', 'United States', NULL, NULL, 67),
+(2, 'Myles', 'Gaskin', 'Running Back', 'United States', 88, 178, 26),
+(2, 'N''Keal', 'Harry', 'Wide Receiver', 'United States', 102, 193, 26),
+(2, 'Nick', 'Mullens', 'Quarterback', 'United States', 85, 185, 28),
+(2, 'Nick', 'Muse', 'Tight End', 'United States', 114, 196, 24),
+(2, 'Patrick', 'Peterson', 'Cornerback', 'United States', 92, 185, 33),
+(2, 'Robert', 'Tonyan', 'Tight End', 'United States', 109, 196, 29),
+(2, 'Sam', 'Darnold', 'Quarterback', 'United States', 102, 191, 26),
+(2, 'Shaquill', 'Griffin', 'Cornerback', 'United States', 90, 183, 28),
+(2, 'T.J.', 'Hockenson', 'Tight End', 'United States', 112, 196, 26),
+(2, 'Thomas', 'Hennigan', 'Wide Receiver', 'United States', 95, 185, 25),
+(2, 'Trent', 'Sherfield Sr.', 'Wide Receiver', 'United States', 93, 185, 27),
+(2, 'Trishton', 'Jackson', 'Wide Receiver', 'United States', 87, 185, 26),
+(2, 'Ty', 'Chandler', 'Running Back', 'United States', 93, 180, 25),
+(2, 'Walter', 'Rouse', 'Offensive Tackle', 'United States', 142, 198, 23);
 
--- Populate the 'soccer_stats' table
-INSERT INTO soccer_stats (soccer_stat_id, player_id, goals, assists, passes_completed, tackles) 
-VALUES 
-(1, 2, 30, 10, 500, 20),
-(2, 2, 32, 12, 510, 22),
-(3, 2, 28, 15, 520, 25),
-(4, 2, 35, 18, 530, 30),
-(5, 2, 40, 20, 540, 35);
 
--- Populate the 'permission' table
-INSERT INTO permission (permission_id, permission_name, description) 
-VALUES 
-(1, 'view_stats', 'Permission to view statistics'),
-(2, 'edit_stats', 'Permission to edit statistics'),
-(3, 'delete_stats', 'Permission to delete statistics'),
-(4, 'manage_users', 'Permission to manage users'),
-(5, 'view_matches', 'Permission to view matches'),
-(6, 'edit_matches', 'Permission to edit matches'),
-(7, 'delete_matches', 'Permission to delete matches');
+INSERT INTO player (team_id, firstname, lastname, position, nationality, weight, height, age) VALUES
+(3, 'Alex', 'Austin', 'Cornerback', 'United States', 87, 185, 24),
+(3, 'Anfernee', 'Jennings', 'Linebacker', 'United States', 116, 191, 26),
+(3, 'Antonio', 'Gibson', 'Running Back', 'United States', 100, 188, 25),
+(3, 'Austin', 'Hooper', 'Tight End', 'United States', 115, 193, 28),
+(3, 'Ben', 'Brown', 'Center', 'United States', 142, 196, 25),
+(3, 'Brenden', 'Schooler', 'Safety', 'United States', 95, 185, 26),
+(3, 'Bryce', 'Baringer', 'Punter', 'United States', 98, 191, 25),
+(3, 'Caedan', 'Wallace', 'Offensive Tackle', 'United States', 142, 196, 22),
+(3, 'Caleb', 'Jones', 'Offensive Tackle', 'United States', 168, 206, 24),
+(3, 'Calvin', 'Anderson', 'Offensive Tackle', 'United States', 136, 196, 27),
+(3, 'Christian', 'Barmore', 'Defensive Tackle', 'United States', 143, 193, 24),
+(3, 'Christian', 'Elliss', 'Linebacker', 'United States', 105, 188, 24),
+(3, 'Christian', 'Gonzalez', 'Cornerback', 'United States', 93, 188, 21),
+(3, 'Chukwuma', 'Okorafor', 'Offensive Tackle', 'United States', 145, 198, 26),
+(3, 'Cole', 'Strange', 'Guard', 'United States', 138, 196, 25),
+(3, 'Curtis', 'Jacobs', 'Linebacker', 'United States', 109, 185, 22),
+(3, 'Daniel', 'Ekuale', 'Defensive End', 'American Samoa', 141, 191, 30),
+(3, 'David', 'Andrews', 'Center', 'United States', 136, 191, 31),
+(3, 'Davon', 'Godchaux', 'Defensive Tackle', 'United States', 143, 191, 28),
+(3, 'Deatrich', 'Wise', 'Defensive End', 'United States', 127, 198, 29),
+(3, 'Dell', 'Pettus', 'Safety', 'United States', 91, 180, 23),
+(3, 'DeMario', 'Douglas', 'Wide Receiver', 'United States', 87, 173, 24),
+(3, 'Demontrey', 'Jacobs', 'Offensive Tackle', 'United States', 143, 198, 22),
+(3, 'Drake', 'Maye', 'Quarterback', 'United States', 102, 193, 21),
+(3, 'Eric', 'Johnson', 'Defensive Tackle', 'United States', 136, 193, 25),
+(3, 'Hunter', 'Henry', 'Tight End', 'United States', 113, 196, 29),
+(3, 'Ja''Lynn', 'Polk', 'Wide Receiver', 'United States', 92, 185, 22),
+(3, 'Ja''Whaun', 'Bentley', 'Linebacker', 'United States', 113, 188, 27),
+(3, 'Jabrill', 'Peppers', 'Safety', 'United States', 93, 180, 28),
+(3, 'Jacoby', 'Brissett', 'Quarterback', 'United States', 107, 193, 31),
+(3, 'Jaheim', 'Bell', 'Tight End', 'United States', 109, 188, 23),
+(3, 'Jahlani', 'Tavai', 'Linebacker', 'United States', 116, 188, 26),
+(3, 'Jake', 'Andrews', 'Center', 'United States', 140, 191, 23),
+(3, 'JaMycal', 'Hasty', 'Running Back', 'United States', 93, 173, 27),
+(3, 'Javon', 'Baker', 'Wide Receiver', 'United States', 92, 185, 23),
+(3, 'Jaylinn', 'Hawkins', 'Safety', 'Panama', 94, 185, 26),
+(3, 'Jeremiah', 'Pharms', 'Defensive End', 'United States', 136, 188, 26),
+(3, 'Jerod', 'Mayo', 'Manager', 'United States', 113, 185, 37),
+(3, 'Joe', 'Giles-Harris', 'Linebacker', 'United States', 106, 188, 25),
+(3, 'Joe', 'Milton', 'Quarterback', 'United States', 107, 196, 23),
+(3, 'Joey', 'Slye', 'Kicker', 'United States', 97, 180, 27),
+(3, 'Jonathan', 'Jones', 'Cornerback', 'United States', 84, 178, 29),
+(3, 'Joseph', 'Cardona', 'Long Snapper', 'United States', 112, 191, 31),
+(3, 'K.J.', 'Osborn', 'Wide Receiver', 'United States', 92, 180, 26),
+(3, 'Kayshon', 'Boutte', 'Wide Receiver', 'United States', 89, 180, 22),
+(3, 'Keion', 'White', 'Defensive End', 'United States', 129, 196, 24),
+(3, 'Kendrick', 'Bourne', 'Wide Receiver', 'United States', 86, 185, 28),
+(3, 'Kevin', 'Harris', 'Running Back', 'United States', 102, 178, 23),
+(3, 'Kyle', 'Dugger', 'Safety', 'United States', 101, 188, 27),
+(3, 'Layden', 'Robinson', 'Guard', 'United States', 141, 191, 24);
 
--- Populate the 'role_permission' table
--- Assign permissions to the 'admin' role (admin has all permissions)
-INSERT INTO role_permission (role_id, permission_id) 
-VALUES 
-(1, 1), -- Admin can view stats
-(1, 2), -- Admin can edit stats
-(1, 3), -- Admin can delete stats
-(1, 4), -- Admin can manage users
-(1, 5), -- Admin can view matches
-(1, 6), -- Admin can edit matches
-(1, 7); -- Admin can delete matches
 
--- Assign permissions to the 'user' role (user has limited permissions)
-INSERT INTO role_permission (role_id, permission_id) 
-VALUES 
-(2, 1), -- User can view stats
-(2, 5); -- User can view matches
+INSERT INTO player (team_id, firstname, lastname, position, nationality, weight, height, age) VALUES
+(4, 'Alex', 'Tuch', 'Center', 'United States', 100, 193, 27),
+(4, 'Beck', 'Malenstyn', 'Forward', 'Canada', 88, 188, 25),
+(4, 'Bowen', 'Byram', 'Defenceman', 'Canada', 86, 185, 22),
+(4, 'Connor', 'Clifton', 'Defenceman', 'United States', 79, 180, 28),
+(4, 'Dennis', 'Gilbert', 'Defenceman', 'United States', 98, 188, 27),
+(4, 'Devon', 'Levi', 'Goaltender', 'Canada', 85, 183, 21),
+(4, 'Dylan', 'Cozens', 'Center', 'Canada', 85, 191, 22),
+(4, 'Felix', 'Sandstrom', 'Goaltender', 'Sweden', NULL, 188, 26),
+(4, 'Henri', 'Jokiharju', 'Defenceman', 'Finland', 90, 183, 24),
+(4, 'Jack', 'Quinn', 'Forward', 'Canada', 80, 183, 22),
+(4, 'Jacob', 'Bryson', 'Defenceman', 'Canada', 79, 175, 26),
+(4, 'Jason', 'Zucker', 'Left Wing', 'United States', 85, 180, 31),
+(4, 'Jiri', 'Kulich', 'Forward', 'Czechia', 78, 182, 19),
+(4, 'John', 'Peterka', 'Wing', 'Germany', 82, 178, 21),
+(4, 'Jordan', 'Greenway', 'Wing', 'United States', 109, 197, 26),
+(4, 'Kale', 'Clague', 'Defenceman', 'Canada', 80, 183, 25),
+(4, 'Lindy', 'Ruff', 'Manager', 'Canada', NULL, NULL, 63),
+(4, 'Mattias', 'Samuelsson', 'Defenceman', 'United States', 98, 193, 23),
+(4, 'Nicolas', 'Aube-Kubel', 'Forward', 'Canada', 85, 180, 27),
+(4, 'Owen', 'Power', 'Defenceman', 'Canada', 97, 195, 21),
+(4, 'Peyton', 'Krebs', 'Center', 'Canada', 86, 180, 22),
+(4, 'Rasmus', 'Dahlin', 'Defenceman', 'Sweden', 94, 189, 23),
+(4, 'Ryan', 'McLeod', 'Center', 'Canada', 91, 191, 24),
+(4, 'Sam', 'Lafferty', 'Center', 'United States', 88, 185, 28),
+(4, 'Tage', 'Thompson', 'Wing', 'United States', 93, 201, 25),
+(4, 'Ukko-Pekka', 'Luukkonen', 'Goaltender', 'Finland', 89, 193, 24),
+(4, 'Zach', 'Benson', 'Left Wing', 'Canada', 77, 178, 18);
+
+
+INSERT INTO player (team_id, firstname, lastname, position, nationality, weight, height, age) VALUES
+(5, 'Adam', 'Klapka', 'Right Winger', 'Czechia', 107, 203, 23),
+(5, 'Andrei', 'Kuzmenko', 'Left Wing', 'Russia', 88, 181, 27),
+(5, 'Anthony', 'Mantha', 'Forward', 'Canada', 106, 195, 29),
+(5, 'Blake', 'Coleman', 'Center', 'United States', 91, 180, 31),
+(5, 'Brayden', 'Pachal', 'Defenceman', 'Canada', NULL, NULL, 23),
+(5, 'Connor', 'Zary', 'Center', 'Canada', 83, 183, 22),
+(5, 'Daniel', 'Vladař', 'Goaltender', 'Czechia', 84, 188, 26),
+(5, 'Dustin', 'Wolf', 'Goaltender', 'United States', 79, 183, 22),
+(5, 'Jake', 'Bean', 'Defenceman', 'Canada', 84, 185, 25),
+(5, 'Jarred', 'Tinordi', 'Defenceman', 'United States', 104, 198, 31),
+(5, 'Joel', 'Hanley', 'Defenceman', 'Canada', 86, 180, 32),
+(5, 'Jonathan', 'Huberdeau', 'Left Wing', 'Canada', 92, 185, 30),
+(5, 'Justin', 'Kirkland', 'Center', 'Canada', 88, 191, 26),
+(5, 'Kevin', 'Bahl', 'Defenceman', 'Canada', 104, 197, 23),
+(5, 'Kevin', 'Rooney', 'Center', 'United States', 86, 188, 30),
+(5, 'MacKenzie', 'Weegar', 'Defenceman', 'Canada', 91, 183, 29),
+(5, 'Martin', 'Pospíšil', 'Center', 'Slovakia', 78, 188, 24),
+(5, 'Matthew', 'Coronato', 'Forward', 'United States', 83, 178, 20),
+(5, 'Mikael', 'Backlund', 'Center', 'Sweden', 91, 184, 34),
+(5, 'Nazem', 'Kadri', 'Center', 'Canada', 87, 183, 33),
+(5, 'Rasmus', 'Andersson', 'Defenceman', 'Sweden', 97, 185, 26),
+(5, 'Ryan', 'Huska', 'Manager', 'Canada', NULL, NULL, 48),
+(5, 'Ryan', 'Lomberg', 'Left Wing', 'Canada', 89, 175, 28),
+(5, 'Samuel', 'Honzek', 'Left Wing', 'Slovakia', 84, 193, 19),
+(5, 'Tyson', 'Barrie', 'Defenceman', 'Canada', 89, 180, 32),
+(5, 'Yegor', 'Sharangovich', 'Center', 'Belarus', 92, 187, 25);
+
+INSERT INTO player (team_id, firstname, lastname, position, nationality, weight, height, age) VALUES
+(6, 'Adam', 'Reynolds', 'Half-back', 'Australia', 85, 173, 33),
+(6, 'Billy', 'Walters', 'Hooker', 'Australia', 88, 180, 29),
+(6, 'Blake', 'Mozer', 'Hooker', 'Australia', 85, 183, 19),
+(6, 'Brendan', 'Piakura', 'Second Row', 'Cook Islands', 102, 189, 21),
+(6, 'Corey', 'Jensen', 'Prop', 'Australia', 107, 188, 29),
+(6, 'Corey', 'Oates', 'Wing', 'Australia', 105, 192, 28),
+(6, 'Cory', 'Paix', 'Hooker', 'Australia', 89, 178, 23),
+(6, 'Deine', 'Mariner', 'Center', 'New Zealand', 89, 185, 20),
+(6, 'Delouise', 'Hoeter', 'Center', 'Tonga', 94, 185, 28),
+(6, 'Ezra', 'Mam', 'Five-eighth', 'Australia', 85, 176, 20),
+(6, 'Fletcher', 'Baker', 'Prop', 'Australia', 107, 194, 23),
+(6, 'Herbie', 'Farnworth', 'Winger', 'England', 106, 190, 23),
+(6, 'Jaiyden', 'Hunt', 'Prop', 'Australia', 111, 191, 24),
+(6, 'Jesse', 'Arthars', 'Wing', 'New Zealand', 95, 189, 25),
+(6, 'Jock', 'Madden', 'Half-back', 'Australia', 85, 178, 23),
+(6, 'Jordan', 'Pereira', 'Wing', 'New Zealand', 97, 182, 30),
+(6, 'Jordan', 'Riki', 'Second Row', 'New Zealand', 105, 190, 23),
+(6, 'Josh', 'Rogers', 'Five-eighth', 'Australia', 90, 186, 27),
+(6, 'Keenan', 'Palasia', 'Prop', 'Australia', 106, 192, 25),
+(6, 'Kevin', 'Walters', 'Manager', 'Australia', 83, 170, 55),
+(6, 'Kobe', 'Hetherington', 'Lock', 'Australia', 95, 183, 24),
+(6, 'Kotoni', 'Staggs', 'Center', 'Tonga', 95, 185, 24),
+(6, 'Kurt', 'Capewell', 'Second Row', 'Australia', 100, 189, 30),
+(6, 'Logan', 'Bayliss-Brow', 'Prop', 'Scotland', 97, 194, 22),
+(6, 'Martin', 'Taupau', 'Prop', 'New Zealand', 112, 190, 33),
+(6, 'Patrick', 'Carrigan', 'Lock', 'Australia', 106, 190, 25),
+(6, 'Payne', 'Haas', 'Prop', 'Australia', 117, 194, 23),
+(6, 'Reece', 'Walsh', 'Full-back', 'Australia', 88, 177, 21),
+(6, 'Selwyn', 'Cobbo', 'Wing', 'Australia', 99, 190, 21),
+(6, 'Thomas', 'Flegler', 'Prop', 'Australia', 110, 190, 24),
+(6, 'Tristan', 'Sailor', 'Full-back', 'Australia', 85, 179, 25),
+(6, 'Tyson', 'Smoothy', 'Hooker', 'Australia', 97, 181, 23),
+(6, 'Xavier', 'Willison', 'Prop', 'Cook Islands', 114, 198, 21);
+
+
+
+INSERT INTO player (team_id, firstname, lastname, position, nationality, weight, height, age) VALUES
+(7, 'Adrian', 'Trevilyan', 'Hooker', 'Australia', 89, 177, 23),
+(7, 'Albert', 'Hopoate', 'Wing', 'Australia', 97, 183, 22),
+(7, 'Ata', 'Mariota', 'Prop', 'Samoa', 107, 184, 22),
+(7, 'Brad', 'Schneider', 'Half-back', 'Australia', 88, 183, 22),
+(7, 'Clay', 'Webb', 'Second Row', 'Australia', 100, 187, 24),
+(7, 'Corey', 'Harawira-Naera', 'Second Row', 'New Zealand', 105, 188, 28),
+(7, 'Corey', 'Horsburgh', 'Lock', 'Australia', 109, 188, 25),
+(7, 'Danny', 'Levi', 'Hooker', 'New Zealand', 90, 177, 27),
+(7, 'Elliott', 'Whitehead', 'Second Row', 'England', 105, 189, 33),
+(7, 'Emre', 'Guler', 'Prop', 'Australia', 112, 191, 25),
+(7, 'Ethan', 'Strange', 'Center', 'Australia', NULL, NULL, 19),
+(7, 'Harley', 'Smith-Shields', 'Center', 'Australia', 94, 183, 22),
+(7, 'Hudson', 'Young', 'Second Row', 'Australia', 98, 182, 24),
+(7, 'Jack', 'Wighton', 'Five-eighth', 'Australia', 93, 189, 30),
+(7, 'Jamal', 'Fogarty', 'Half-back', 'Australia', 85, 177, 29),
+(7, 'James', 'Schiller', 'Wing', 'Australia', 95, 190, 23),
+(7, 'Jarrod', 'Croker', 'Center', 'Australia', 93, 184, 33),
+(7, 'Jordan', 'Rapana', 'Wing', 'New Zealand', 102, 187, 34),
+(7, 'Joseph', 'Tapine', 'Prop', 'New Zealand', 106, 189, 29),
+(7, 'Josh', 'Papalii', 'Prop', 'Australia', 119, 183, 31),
+(7, 'Kaeo', 'Weekes', 'Full-back', 'Australia', 90, 182, 21),
+(7, 'Matthew', 'Timoko', 'Center', 'New Zealand', 96, 183, 23),
+(7, 'Morgan', 'Smithies', 'Loose Forward', 'England', 106, 185, 22),
+(7, 'Nick', 'Cotric', 'Wing', 'Australia', 98, 185, 25),
+(7, 'Pasami', 'Saulo', 'Prop', 'Australia', 103, 190, 25),
+(7, 'Peter', 'Hola', 'Prop', 'Australia', 110, 192, 24),
+(7, 'Ricky', 'Stuart', 'Manager', 'Australia', 83, 175, 56),
+(7, 'Sebastian', 'Kris', 'Center', 'New Zealand', 100, 184, 23),
+(7, 'Simi', 'Sasagi', 'Center', 'New Zealand', 94, 185, 22),
+(7, 'Tom', 'Starling', 'Hooker', 'Australia', 80, 172, 25),
+(7, 'Trey', 'Mooney', 'Second Row', 'Australia', 106, 188, 23),
+(7, 'Troy', 'Dargan', 'Half-back', 'Cook Islands', 87, 174, 24),
+(7, 'Xavier', 'Savage', 'Full-back', 'Australia', 90, 184, 21),
+(7, 'Zac', 'Woolford', 'Hooker', 'Australia', 90, 179, 27);
+
+
+
+
+
+

@@ -113,6 +113,7 @@ public partial class SportsAppDbContext : DbContext
         });
 
 
+
         modelBuilder.Entity<RolePermission>(entity =>
         {
             entity.HasKey(rp => new { rp.RoleId, rp.PermissionId })

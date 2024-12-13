@@ -1,220 +1,242 @@
-﻿---Table: sport
-CREATE TABLE sport (
-    sport_id BIGINT PRIMARY KEY,
-    sport_name VARCHAR(255)
+﻿CREATE TABLE [user] (
+    user_id bigint NOT NULL,
+    username varchar(50) NOT NULL,
+    password varchar(MAX) NOT NULL,
+    email varchar(MAX) NOT NULL,
+    firstname nvarchar(50) NOT NULL,
+    lastname nvarchar(50) NOT NULL,
+    CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
----Table: course
-CREATE TABLE course (
-    course_id BIGINT PRIMARY KEY,
-    sport_id BIGINT,
-    title VARCHAR(255),
-    content TEXT,
-    created_at TIMESTAMP,
-    FOREIGN KEY (sport_id) REFERENCES sport(sport_id)
-);
-
----Table: league
-CREATE TABLE league (
-    league_id BIGINT PRIMARY KEY,
-    sport_id BIGINT,
-    league_name VARCHAR(255),
-    FOREIGN KEY (sport_id) REFERENCES sport(sport_id)
-);
-
----Table: team
-CREATE TABLE team (
-    team_id BIGINT PRIMARY KEY,
-    league_id BIGINT,
-    team_name VARCHAR(255),
-    FOREIGN KEY (league_id) REFERENCES league(league_id)
-);
-
----Table: player
-CREATE TABLE player (
-    player_id BIGINT PRIMARY KEY,
-    team_id BIGINT,
-    firstname VARCHAR(255),
-    lastname VARCHAR(255),
-    position VARCHAR(50),
-    age INT,
-    nationality VARCHAR(100),
-    weight FLOAT,
-    FOREIGN KEY (team_id) REFERENCES team(team_id)
-);
-
----Table: player_stat
-CREATE TABLE player_stat (
-    player_stat_id BIGINT PRIMARY KEY,
-    player_id BIGINT,
-    sport_id BIGINT,
-    points INT,
-    assists INT,
-    saves INT,
-    minutes_played INT,
-    shots_on_target INT,
-    fouls INT,
-    matches_played INT,
-    goals_per_game_average FLOAT,
-    saves_percentage FLOAT,
-    goals_against_average FLOAT,
-    FOREIGN KEY (player_id) REFERENCES player(player_id),
-    FOREIGN KEY (sport_id) REFERENCES sport(sport_id)
-);
-
----Table: user
-CREATE TABLE user (
-    user_id BIGINT PRIMARY KEY,
-    username VARCHAR(255),
-    password VARCHAR(255),
-    firstname VARCHAR(255),
-    lastname VARCHAR(255)
-);
-
----Table: role
 CREATE TABLE role (
-    role_id BIGINT PRIMARY KEY,
-    role_name VARCHAR(255),
-    role_description VARCHAR(255)
+    role_id bigint NOT NULL,
+    role_description nvarchar(MAX) NOT NULL,
+    role_name nvarchar(50) NOT NULL,
+    CONSTRAINT PK_role PRIMARY KEY (role_id)
 );
 
----Table: permission
 CREATE TABLE permission (
-    permission_id BIGINT PRIMARY KEY,
-    name VARCHAR(255),
-    description VARCHAR(255)
+    permission_id bigint NOT NULL,
+    name nvarchar(50) NULL,
+    description nvarchar(MAX) NULL,
+    CONSTRAINT PK_permission PRIMARY KEY (permission_id)
 );
 
----Table: user_role (Composite Key)
 CREATE TABLE user_role (
-    user_id BIGINT,
-    role_id BIGINT,
-    PRIMARY KEY (user_id, role_id),
-    FOREIGN KEY (user_id) REFERENCES user(user_id),
-    FOREIGN KEY (role_id) REFERENCES role(role_id)
+    user_id bigint NOT NULL,
+    role_id bigint NOT NULL,
+    CONSTRAINT PK_user_role PRIMARY KEY (user_id, role_id),
+    CONSTRAINT FK_user_role_user FOREIGN KEY (user_id) REFERENCES [user](user_id),
+    CONSTRAINT FK_user_role_role FOREIGN KEY (role_id) REFERENCES role(role_id)
 );
 
----Table: role_permission (Composite Key)
+CREATE TABLE sport (
+    sport_id bigint NOT NULL,
+    sport_name varchar(50) NULL,
+    CONSTRAINT PK_sport PRIMARY KEY (sport_id)
+);
+
+CREATE TABLE league (
+    league_id bigint NOT NULL,
+    sport_id bigint NOT NULL,
+    league_name varchar(50) NULL,
+    CONSTRAINT PK_league PRIMARY KEY (league_id),
+    CONSTRAINT FK_league_sport FOREIGN KEY (sport_id) REFERENCES sport(sport_id)
+);
+
+CREATE TABLE team (
+    team_id bigint NOT NULL,
+    league_id bigint NOT NULL,
+    team_name nvarchar(50) NULL,
+    CONSTRAINT PK_team PRIMARY KEY (team_id),
+    CONSTRAINT FK_team_league FOREIGN KEY (league_id) REFERENCES league(league_id)
+);
+
+CREATE TABLE player (
+    player_id bigint NOT NULL,
+    team_id bigint NOT NULL,
+    firstname nvarchar(50) NULL,
+    lastname nvarchar(50) NULL,
+    position varchar(50) NULL,
+    age int NULL,
+    nationality nvarchar(50) NULL,
+    weight int NULL,
+    height int NULL,
+    CONSTRAINT PK_player PRIMARY KEY (player_id),
+    CONSTRAINT FK_player_team FOREIGN KEY (team_id) REFERENCES team(team_id)
+);
+
 CREATE TABLE role_permission (
-    role_id BIGINT,
-    permission_id BIGINT,
-    PRIMARY KEY (role_id, permission_id),
-    FOREIGN KEY (role_id) REFERENCES role(role_id),
-    FOREIGN KEY (permission_id) REFERENCES permission(permission_id)
+    role_id bigint NOT NULL,
+    permission_id bigint NOT NULL,
+    CONSTRAINT PK_role_permission PRIMARY KEY (role_id, permission_id),
+    CONSTRAINT FK_role_permission_role FOREIGN KEY (role_id) REFERENCES role(role_id),
+    CONSTRAINT FK_role_permission_permission FOREIGN KEY (permission_id) REFERENCES permission(permission_id)
 );
 
----Table: favorite
 CREATE TABLE favorite (
-    favorite_id BIGINT PRIMARY KEY,
-    user_id BIGINT,
-    player_id BIGINT,
-    FOREIGN KEY (user_id) REFERENCES user(user_id),
-    FOREIGN KEY (player_id) REFERENCES player(player_id)
+    favorite_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    player_id bigint NOT NULL,
+    CONSTRAINT PK_favorite PRIMARY KEY (favorite_id),
+    CONSTRAINT FK_favorite_user FOREIGN KEY (user_id) REFERENCES [user](user_id),
+    CONSTRAINT FK_favorite_player FOREIGN KEY (player_id) REFERENCES player(player_id)
 );
 
----Table: match
-CREATE TABLE match (
-    match_id BIGINT PRIMARY KEY,
-    home_team_id BIGINT,
-    away_team_id BIGINT,
-    match_date DATE,
-    match_time TIME,
-    match_status VARCHAR(255),
-    home_score INT,
-    away_score INT,
-    FOREIGN KEY (home_team_id) REFERENCES team(team_id),
-    FOREIGN KEY (away_team_id) REFERENCES team(team_id)
+CREATE TABLE course (
+    course_id bigint NOT NULL,
+    sport_id bigint NULL,
+    title varchar(50) NULL,
+    [content] text NULL,
+    createdAt datetime NULL,
+    CONSTRAINT PK_course PRIMARY KEY (course_id),
+    CONSTRAINT FK_course_sport FOREIGN KEY (sport_id) REFERENCES sport(sport_id)
 );
 
----Table: ufc_stats
-CREATE TABLE ufc_stats (
-    ufc_stat_id BIGINT PRIMARY KEY,
-    player_id BIGINT,
-    ko_tko_wins INT,
-    submission_wins INT,
-    decision_wins INT,
-    significant_strikes_landed INT,
-    significant_strikes_attempted INT,
-    takedown_accuracy FLOAT,
-    submission_attempted INT,
-    average_fight_time FLOAT,
-    reach FLOAT,
-    FOREIGN KEY (player_id) REFERENCES player(player_id)
+
+If this script doesn't work—since MSSQL can occasionally be buggy—you can separate it into individual parts, reducing the chance of errors.
+
+Just tables:
+
+
+CREATE TABLE user_role (
+    user_id bigint NOT NULL,
+    role_id bigint NOT NULL
 );
 
----Table: football_stats
-CREATE TABLE football_stats (
-    football_stat_id BIGINT PRIMARY KEY,
-    player_id BIGINT,
-    passing_yards INT,
-    FOREIGN KEY (player_id) REFERENCES player(player_id)
+CREATE TABLE [user] (
+    user_id bigint NOT NULL,
+    username varchar(50) NOT NULL,
+    password varchar(MAX) NOT NULL,
+    email varchar(MAX) NOT NULL,
+    firstname nvarchar(50) NOT NULL,
+    lastname nvarchar(50) NOT NULL
 );
 
----Table: golf_stats
-CREATE TABLE golf_stats (
-    golf_stat_id BIGINT PRIMARY KEY,
-    player_id BIGINT,
-    driving_accuracy FLOAT,
-    fairway_accuracy FLOAT,
-    greens_in_regulation FLOAT,
-    scrambling_percentage FLOAT,
-    average_putts FLOAT,
-    FOREIGN KEY (player_id) REFERENCES player(player_id)
+CREATE TABLE team (
+    team_id bigint NOT NULL,
+    league_id bigint NOT NULL,
+    team_name nvarchar(50) NULL
 );
 
----Table: tennis_stats
-CREATE TABLE tennis_stats (
-    tennis_stat_id BIGINT PRIMARY KEY,
-    player_id BIGINT,
-    aces INT,
-    double_faults INT,
-    first_serve_percentage FLOAT,
-    first_serve_points_won INT,
-    break_points_converted INT,
-    matches_won INT,
-    sets_won INT,
-    FOREIGN KEY (player_id) REFERENCES player(player_id)
+CREATE TABLE sport (
+    sport_name varchar(50) NULL,
+    sport_id bigint NOT NULL
 );
 
----Table: hockey_stats
-CREATE TABLE hockey_stats (
-    hockey_stat_id BIGINT PRIMARY KEY,
-    player_id BIGINT,
-    goals INT,
-    assists INT,
-    plus_minus INT,
-    penalty_minutes INT,
-    shots_on_goal INT,
-    FOREIGN KEY (player_id) REFERENCES player(player_id)
+CREATE TABLE role_permission (
+    role_id bigint NOT NULL,
+    permission_id bigint NOT NULL
 );
 
----Table: basketball_stats
-CREATE TABLE basketball_stats (
-    basketball_stat_id BIGINT PRIMARY KEY,
-    player_id BIGINT,
-    points_per_game FLOAT,
-    rebounds_per_game FLOAT,
-    assists_per_game FLOAT,
-    field_goal_percentage FLOAT,
-    free_throw_percentage FLOAT,
-    three_point_percentage FLOAT,
-    steals INT,
-    blocks INT,
-    turnovers INT,
-    FOREIGN KEY (player_id) REFERENCES player(player_id)
+CREATE TABLE role (
+    role_id bigint NOT NULL,
+    role_description nvarchar(MAX) NOT NULL,
+    role_name nvarchar(50) NOT NULL
 );
 
----Table: soccer_stats
-CREATE TABLE soccer_stats (
-    soccer_stat_id BIGINT PRIMARY KEY,
-    player_id BIGINT,
-    passes_completed INT,
-    pass_completion_percentage FLOAT,
-    assists INT,
-    goals INT,
-    dribbles_completed INT,
-    tackles INT,
-    yellow_cards INT,
-    red_cards INT,
-    FOREIGN KEY (player_id) REFERENCES player(player_id)
+CREATE TABLE player (
+    player_id bigint NOT NULL,
+    team_id bigint NOT NULL,
+    firstname nvarchar(50) NULL,
+    lastname nvarchar(50) NULL,
+    position varchar(50) NULL,
+    age int NULL,
+    nationality nvarchar(50) NULL,
+    weight int NULL,
+    height int NULL
 );
+
+CREATE TABLE permission (
+    permission_id bigint NOT NULL,
+    name nvarchar(50) NULL,
+    description nvarchar(MAX) NULL
+);
+
+CREATE TABLE league (
+    league_id bigint NOT NULL,
+    sport_id bigint NOT NULL,
+    league_name varchar(50) NULL
+);
+
+CREATE TABLE favorite (
+    favorite_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    player_id bigint NOT NULL
+);
+
+CREATE TABLE course (
+    course_id bigint NOT NULL,
+    sport_id bigint NULL,
+    title varchar(50) NULL,
+    [content] text NULL,
+    createdAt datetime NULL
+);
+
+
+
+
+(Make sure the user_id column is an identity column. The same for player_id and favorite_id
+You can verify this by opening the table in Design view, selecting the user_id column, and checking that the Identity Specification (IsIdentity) property is set to "Yes.)
+
+-- Add Primary Keys
+ALTER TABLE [user]
+ADD CONSTRAINT PK_user PRIMARY KEY (user_id);
+
+ALTER TABLE role
+ADD CONSTRAINT PK_role PRIMARY KEY (role_id);
+
+ALTER TABLE permission
+ADD CONSTRAINT PK_permission PRIMARY KEY (permission_id);
+
+ALTER TABLE user_role
+ADD CONSTRAINT PK_user_role PRIMARY KEY (user_id, role_id);
+
+ALTER TABLE sport
+ADD CONSTRAINT PK_sport PRIMARY KEY (sport_id);
+
+ALTER TABLE league
+ADD CONSTRAINT PK_league PRIMARY KEY (league_id);
+
+ALTER TABLE team
+ADD CONSTRAINT PK_team PRIMARY KEY (team_id);
+
+ALTER TABLE player
+ADD CONSTRAINT PK_player PRIMARY KEY (player_id);
+
+ALTER TABLE role_permission
+ADD CONSTRAINT PK_role_permission PRIMARY KEY (role_id, permission_id);
+
+ALTER TABLE favorite
+ADD CONSTRAINT PK_favorite PRIMARY KEY (favorite_id);
+
+ALTER TABLE course
+ADD CONSTRAINT PK_course PRIMARY KEY (course_id);
+
+
+(MySQL does not allow you to add multiple constraints at the same time, so you’ll have to add them one by one.)
+
+-- Add Foreign Keys
+ALTER TABLE user_role
+ADD CONSTRAINT FK_user_role_user FOREIGN KEY (user_id) REFERENCES [user](user_id),
+ADD CONSTRAINT FK_user_role_role FOREIGN KEY (role_id) REFERENCES role(role_id);
+
+ALTER TABLE league
+ADD CONSTRAINT FK_league_sport FOREIGN KEY (sport_id) REFERENCES sport(sport_id);
+
+ALTER TABLE team
+ADD CONSTRAINT FK_team_league FOREIGN KEY (league_id) REFERENCES league(league_id);
+
+ALTER TABLE player
+ADD CONSTRAINT FK_player_team FOREIGN KEY (team_id) REFERENCES team(team_id);
+
+ALTER TABLE role_permission
+ADD CONSTRAINT FK_role_permission_role FOREIGN KEY (role_id) REFERENCES role(role_id),
+ADD CONSTRAINT FK_role_permission_permission FOREIGN KEY (permission_id) REFERENCES permission(permission_id);
+
+ALTER TABLE favorite
+ADD CONSTRAINT FK_favorite_user FOREIGN KEY (user_id) REFERENCES [user](user_id),
+ADD CONSTRAINT FK_favorite_player FOREIGN KEY (player_id) REFERENCES player(player_id);
+
+ALTER TABLE course
+ADD CONSTRAINT FK_course_sport FOREIGN KEY (sport_id) REFERENCES sport(sport_id);
