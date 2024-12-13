@@ -366,6 +366,633 @@ INSERT INTO player (team_id, firstname, lastname, position, nationality, weight,
 
 
 
+INSERT INTO course (course_id, sport_id, title, [content], createdAt)
+VALUES
+(1, 1, 'Football Overview', 'An overview of Football, its gameplay, and key rules.', GETDATE()),
+(2, 2, 'Soccer Overview', 'An introduction to Soccer, its structure, and key facts.', GETDATE()),
+(3, 3, 'Basketball Overview', 'Basics of Basketball, its teams, and gameplay.', GETDATE()),
+(4, 4, 'Tennis Overview', 'A look at Tennis rules, players, and major tournaments.', GETDATE()),
+(5, 5, 'MMA Overview', 'Exploring Mixed Martial Arts and the UFC.', GETDATE()),
+(6, 6, 'Hockey Overview', 'An introduction to Ice Hockey and the NHL.', GETDATE()),
+(7, 7, 'Baseball Overview', 'Basics of Baseball, MLB, and its rules.', GETDATE()),
+(8, 8, 'Formula 1 Overview', 'Details about Formula 1, its teams, and races.', GETDATE()),
+(9, 9, 'Rugby Overview', 'A brief look into Rugby and the NRL.', GETDATE());
 
 
 
+The best way to represent the articles is by first executing this query, then going back to the table, clicking on edit, and copying these into the content. This will be the easiest way to get the articles in without having to worry about syntax errors.
+
+Football (NFL)
+Overview
+Football, also known as American Football, is one of the most popular sports in the United States. It is known for its high level of strategy, teamwork, and physicality. The NFL (National Football League) is the premier professional football league, consisting of 32 teams divided into two conferences: the AFC (American Football Conference) and the NFC (National Football Conference).
+
+Basics of the Sport
+Objective: The primary objective is to score points by advancing the football into the opposing team's end zone or kicking it through the opponent's goalposts.
+Duration: A game lasts 60 minutes, divided into four 15-minute quarters, with a halftime break after the second quarter.
+Playing Field: The field measures 100 yards long and 53.3 yards wide, with two 10-yard deep end zones.
+Team Structure: Each team consists of 11 players on the field at any given time, divided into offense, defense, and special teams.
+Gameplay
+Starting Play:
+
+Games begin with a kickoff, where one team kicks the ball to the other team to start play.
+Scoring:
+
+Touchdown: 6 points for advancing the ball into the opponent's end zone.
+Field Goal: 3 points for kicking the ball through the opponent's goalposts.
+Safety: 2 points for tackling an opponent in their own end zone.
+Extra Point/2-Point Conversion: After a touchdown, teams can kick for 1 point or attempt a 2-point conversion.
+Rules:
+
+Teams have four downs to advance the ball 10 yards. If they succeed, they earn a new set of downs. Failure results in a turnover to the opposing team.
+Positions
+Offense:
+Quarterback (QB): The leader of the offense; passes or hands off the ball.
+Running Back (RB): Responsible for running the ball and catching short passes.
+Wide Receiver (WR): Catches passes from the quarterback.
+Offensive Linemen (OL): Protect the quarterback and block for the running backs.
+Defense:
+Defensive Linemen (DL): Stop the run and pressure the quarterback.
+Linebackers (LB): Defend against both runs and passes.
+Defensive Backs (DB): Cover receivers and defend against passes.
+Special Teams:
+Includes kickers, punters, and returners who handle kickoffs, punts, and field goals.
+Fouls and Penalties
+Common Fouls:
+Offside: A defensive player crosses the line of scrimmage before the ball is snapped.
+Holding: A player grabs an opponent to impede their movement.
+Pass Interference: Illegally preventing a receiver from catching the ball.
+Penalties:
+Referees throw yellow flags to signal penalties, resulting in yardage loss or replayed downs.
+Key Competitions and Leagues
+NFL Regular Season: Teams play 17 games over 18 weeks.
+NFL Playoffs: The top 14 teams compete in a single-elimination tournament.
+Super Bowl: The AFC and NFC champions face off for the NFL championship.
+Notable Facts
+The NFL was founded in 1920 as the American Professional Football Association (APFA).
+The Super Bowl is one of the most-watched sporting events in the world.
+The Vince Lombardi Trophy is awarded to the Super Bowl champion.
+
+
+
+Soccer
+Overview
+Soccer, also known as football in most countries, is the world’s most popular sport. Known for its fast-paced gameplay, simplicity, and universal appeal, it is played in nearly every country. Professional soccer leagues and tournaments, such as the FIFA World Cup, UEFA Champions League, and Major League Soccer (MLS), have helped solidify soccer as the global game.
+
+Basics of the Sport
+Objective: The goal is to score points by kicking the ball into the opponent’s net while preventing the opposing team from scoring.
+Duration: A standard match lasts 90 minutes, divided into two 45-minute halves, with a 15-minute halftime break. Additional time (extra time or penalties) is added in some cases.
+Playing Field: Matches are played on a rectangular grass or artificial turf field, measuring 100–130 yards in length and 50–100 yards in width.
+Team Structure: Each team consists of 11 players, including a goalkeeper.
+Gameplay
+Starting Play:
+
+Matches begin with a kickoff at the center of the field.
+Scoring:
+
+A goal is scored when the ball completely crosses the goal line between the posts and beneath the crossbar.
+No points are awarded for near misses or other attempts.
+Rules:
+
+Players cannot intentionally touch the ball with their hands or arms (except the goalkeeper within their penalty area).
+Offside: An attacker must not be closer to the opponent's goal than the second-last defender when the ball is passed to them.
+Positions
+Goalkeeper: The last line of defense, responsible for stopping shots on goal.
+Defenders:
+Center Backs: Protect the area directly in front of the goal.
+Fullbacks/Wingbacks: Defend against wide attacks and support offensive plays.
+Midfielders:
+Defensive Midfielders: Shield the defense and win back possession.
+Attacking Midfielders: Create scoring opportunities.
+Central Midfielders: Balance attack and defense.
+Forwards:
+Strikers: Focus on scoring goals.
+Wingers: Deliver crosses and stretch the opponent’s defense.
+Fouls and Penalties
+Yellow Card: A caution for unsportsmanlike behavior, such as excessive fouling or time-wasting.
+Red Card: Given for serious offenses (e.g., violent conduct); results in immediate ejection from the game, leaving the team with 10 players.
+Free Kick: Awarded for fouls, with direct (can score) and indirect (another player must touch) variations.
+Penalty Kick: Awarded for fouls committed in the penalty area, allowing a direct shot at goal from the penalty spot.
+Key Competitions and Leagues
+FIFA World Cup:
+The most prestigious international tournament, held every four years.
+Features the best national teams worldwide.
+UEFA Champions League:
+The top European club competition, showcasing elite teams from European leagues.
+Major League Soccer (MLS):
+The premier soccer league in the United States and Canada.
+UEFA Europa League:
+A secondary European competition for high-performing teams that do not qualify for the Champions League.
+Notable Facts
+Soccer originated in England in the mid-19th century.
+The FIFA World Cup is the most-watched sporting event globally, even surpassing the Olympics.
+Lionel Messi and Cristiano Ronaldo are among the most celebrated players in history.
+Soccer is unique in its simplicity, requiring only a ball and a flat surface to play.
+
+
+
+Basketball (NBA)
+Overview
+Basketball is a fast-paced, high-scoring team sport that requires strategy, athleticism, and precision. The National Basketball Association (NBA) is the premier professional basketball league, featuring 30 teams across the United States and Canada. The NBA is known for its global popularity, superstar players, and marquee events like the NBA Finals.
+
+Basics of the Sport
+Objective: The goal is to score points by shooting the ball into the opponent's basket while defending your own basket.
+Duration: A standard game consists of four 12-minute quarters, with a 15-minute halftime break after the second quarter. If the score is tied at the end of regulation, overtime periods of 5 minutes are played until a winner is determined.
+Playing Field: Games are played on a rectangular court measuring 94 feet long and 50 feet wide, with baskets located 10 feet above the floor at either end.
+Team Structure: Each team consists of five players on the court at a time, with substitutions allowed.
+Gameplay
+Starting Play:
+
+Games begin with a jump ball at center court, where the referee tosses the ball into the air, and one player from each team attempts to tap it to a teammate.
+Scoring:
+
+Field Goal: 2 points for a basket made inside the three-point line.
+Three-Point Shot: 3 points for a basket made beyond the three-point arc.
+Free Throw: 1 point for each successful free throw awarded after a foul.
+Rules:
+
+The offensive team has 24 seconds to take a shot (shot clock).
+Traveling: A player cannot move with the ball without dribbling.
+Double Dribble: A player cannot dribble the ball, stop, and then dribble again.
+Positions
+Point Guard (PG): The playmaker and primary ball handler; directs the team’s offense.
+Shooting Guard (SG): A strong scorer who often takes long-range shots.
+Small Forward (SF): A versatile player who can score, defend, and assist.
+Power Forward (PF): Focuses on rebounding and scoring near the basket.
+Center (C): The tallest player, responsible for shot-blocking and scoring in the paint.
+Fouls and Penalties
+Personal Foul: Contact with an opponent that gives an unfair advantage.
+Shooting Foul: When a player is fouled while attempting a shot; results in free throws.
+Technical Foul: For unsportsmanlike behavior, such as arguing with referees.
+Team Fouls: After a team commits a certain number of fouls per quarter (usually five), the opposing team is awarded free throws for subsequent fouls (bonus situation).
+Key Competitions and Leagues
+NBA Regular Season:
+Each team plays 82 games (41 home, 41 away) during the regular season.
+NBA Playoffs:
+The top 8 teams from each conference (Eastern and Western) compete in a best-of-seven elimination format.
+NBA Finals:
+The champions of the Eastern and Western Conferences face off for the NBA title.
+All-Star Game:
+An annual exhibition game featuring the league’s best players, voted in by fans, players, and media.
+Notable Facts
+Basketball was invented in 1891 by Dr. James Naismith in Springfield, Massachusetts.
+The NBA was founded in 1946 and has since become the global standard for professional basketball.
+Michael Jordan, LeBron James, and Kareem Abdul-Jabbar are among the most celebrated players in NBA history.
+The NBA has expanded its reach globally, with players from over 40 countries competing in the league.
+
+
+
+Tennis
+Overview
+Tennis is a global sport played by individuals or pairs, requiring precision, athleticism, and strategy. It is played on a rectangular court with a net dividing the two sides. Players use rackets to hit a ball over the net, aiming to outmaneuver their opponent and score points. The sport is governed by organizations like the International Tennis Federation (ITF) and features prestigious tournaments such as Wimbledon, the US Open, the French Open, and the Australian Open.
+
+Basics of the Sport
+Objective: The goal in tennis is to win points by hitting the ball into the opponent’s court in a way that they cannot return it.
+Scoring System:
+A match consists of sets, and sets are made up of games.
+Points within a game follow this progression: 0 ("Love"), 15, 30, 40, and Game Point.
+To win a set, a player must win at least six games and lead by two. In case of a tie at 6-6, a tiebreaker may be played.
+Playing Field:
+The court dimensions are 78 feet long and 27 feet wide for singles matches (36 feet wide for doubles).
+Tennis can be played on different surfaces: grass, clay, hard courts, or artificial turf.
+Gameplay
+Starting Play:
+
+Matches begin with a coin toss to determine who serves first and which side of the court they start on.
+The server must hit the ball into the opponent’s service box, alternating sides with each serve.
+Rules of Play:
+
+Players must hit the ball before it bounces twice on their side.
+A point ends when the ball lands out of bounds, fails to clear the net, or a player cannot return the ball.
+Unique Features:
+
+Deuce: If both players reach 40 points, the game goes to "deuce." A player must win two consecutive points to win the game.
+Advantage: The first point won after deuce gives the player "advantage." Winning the next point secures the game.
+Singles vs. Doubles
+Singles:
+Played between two players.
+Focuses on individual skill and endurance.
+Doubles:
+Played between two teams of two players each.
+Requires coordination and teamwork.
+Differences Between Men’s and Women’s Tennis
+Match Format:
+Men’s matches in Grand Slam tournaments are best of five sets.
+Women’s matches are typically best of three sets.
+Playing Style:
+Men’s tennis often emphasizes power and speed.
+Women’s tennis highlights strategy, finesse, and agility.
+Fouls and Penalties
+Foot Fault: When the server steps over the baseline while serving.
+Double Fault: Failing to get the ball into the service box on both serve attempts results in the loss of a point.
+Code Violations: Unsportsmanlike behavior, such as racket abuse or verbal outbursts, can result in warnings, point deductions, or even match disqualification.
+Key Competitions
+Grand Slam Tournaments:
+Australian Open: Played on hard courts in Melbourne.
+French Open: Played on clay courts in Paris.
+Wimbledon: Played on grass courts in London.
+US Open: Played on hard courts in New York.
+ATP and WTA Tours:
+The Association of Tennis Professionals (ATP) and Women’s Tennis Association (WTA) organize professional tours for men and women, respectively.
+Notable Facts
+Tennis originated in 12th-century France as a game called "jeu de paume."
+The longest professional tennis match lasted over 11 hours at Wimbledon in 2010.
+Icons of the sport include Roger Federer, Serena Williams, Rafael Nadal, and Novak Djokovic.
+Tennis has been an Olympic sport since 1896.
+
+
+
+Mixed Martial Arts (MMA)
+Overview
+Mixed Martial Arts (MMA) is a full-contact combat sport that incorporates techniques from various martial arts disciplines, including boxing, wrestling, Brazilian jiu-jitsu, Muay Thai, and judo. The sport is highly versatile and showcases a combination of striking and grappling techniques. The Ultimate Fighting Championship (UFC) is the premier MMA organization globally, hosting events featuring top fighters from around the world.
+
+Basics of the Sport
+Objective: The goal is to defeat the opponent using striking, grappling, or submissions, either by achieving a knockout, forcing a tap-out, or winning by judges’ decision.
+Duration:
+Non-title fights consist of three 5-minute rounds.
+Title fights and main events consist of five 5-minute rounds.
+One-minute rest periods occur between rounds.
+Fighting Arena: Matches are held in an octagonal cage, known as "The Octagon," to ensure fighter safety and allow for a wide range of techniques.
+Gameplay
+Starting the Fight:
+
+Fighters are introduced by the announcer and face off in the center of the Octagon.
+The referee signals the start of the fight with "Fight!"
+Ways to Win:
+
+Knockout (KO): The opponent is rendered unconscious from strikes.
+Technical Knockout (TKO): The referee stops the fight if one fighter cannot defend themselves intelligently.
+Submission: The opponent taps out due to a hold or choke.
+Decision: Judges score the fight based on control, striking, grappling, and aggression.
+Disqualification: A fighter is disqualified for breaking rules.
+Rules:
+
+Fighters must follow the Unified Rules of MMA, which prohibit strikes to the back of the head, groin shots, and eye pokes.
+Fighters are allowed to strike, grapple, and use submission holds.
+Techniques and Styles
+MMA fighters often specialize in a mix of the following disciplines:
+
+Striking:
+Boxing: Emphasizes punches and footwork.
+Muay Thai: Known for its clinch work, elbows, knees, and kicks.
+Grappling:
+Wrestling: Focuses on takedowns and ground control.
+Brazilian Jiu-Jitsu (BJJ): Specializes in submissions and positional dominance.
+Hybrid Styles:
+Fighters often combine elements from various martial arts to adapt to different opponents.
+Weight Classes
+MMA features multiple weight classes to ensure fair competition:
+
+Flyweight: Up to 125 lbs (56.7 kg)
+Bantamweight: Up to 135 lbs (61.2 kg)
+Featherweight: Up to 145 lbs (65.8 kg)
+Lightweight: Up to 155 lbs (70.3 kg)
+Welterweight: Up to 170 lbs (77.1 kg)
+Middleweight: Up to 185 lbs (83.9 kg)
+Light Heavyweight: Up to 205 lbs (93.0 kg)
+Heavyweight: Up to 265 lbs (120.2 kg)
+Fouls and Penalties
+Illegal Strikes:
+Strikes to the back of the head or spine.
+Kicks to a grounded opponent's head.
+Eye gouging or fish hooking.
+Point Deductions:
+Referees may deduct points for repeated fouls.
+Disqualifications:
+Fighters may be disqualified for intentional illegal actions.
+Key Competitions
+Ultimate Fighting Championship (UFC):
+The largest and most recognized MMA organization, featuring top fighters across all weight classes.
+Hosts high-profile events like UFC Fight Nights and pay-per-view title bouts.
+Bellator MMA:
+Known for its Grand Prix tournaments and focus on emerging fighters.
+ONE Championship:
+Prominent in Asia, highlighting diverse martial arts styles alongside MMA.
+PFL (Professional Fighters League):
+A unique league format with regular-season matches and playoffs.
+Notable Facts
+MMA is one of the fastest-growing sports globally, with a massive fanbase.
+UFC legends include Conor McGregor, Jon Jones, Amanda Nunes, and Khabib Nurmagomedov.
+UFC was founded in 1993 and has since grown into a billion-dollar organization.
+MMA fights often include pre-fight weigh-ins, press conferences, and intense staredowns.
+
+
+Mixed Martial Arts (MMA)
+Overview
+Mixed Martial Arts (MMA) is a full-contact combat sport that incorporates techniques from various martial arts disciplines, including boxing, wrestling, Brazilian jiu-jitsu, Muay Thai, and judo. The sport is highly versatile and showcases a combination of striking and grappling techniques. The Ultimate Fighting Championship (UFC) is the premier MMA organization globally, hosting events featuring top fighters from around the world.
+
+Basics of the Sport
+Objective: The goal is to defeat the opponent using striking, grappling, or submissions, either by achieving a knockout, forcing a tap-out, or winning by judges’ decision.
+Duration:
+Non-title fights consist of three 5-minute rounds.
+Title fights and main events consist of five 5-minute rounds.
+One-minute rest periods occur between rounds.
+Fighting Arena: Matches are held in an octagonal cage, known as "The Octagon," to ensure fighter safety and allow for a wide range of techniques.
+Gameplay
+Starting the Fight:
+
+Fighters are introduced by the announcer and face off in the center of the Octagon.
+The referee signals the start of the fight with "Fight!"
+Ways to Win:
+
+Knockout (KO): The opponent is rendered unconscious from strikes.
+Technical Knockout (TKO): The referee stops the fight if one fighter cannot defend themselves intelligently.
+Submission: The opponent taps out due to a hold or choke.
+Decision: Judges score the fight based on control, striking, grappling, and aggression.
+Disqualification: A fighter is disqualified for breaking rules.
+Rules:
+
+Fighters must follow the Unified Rules of MMA, which prohibit strikes to the back of the head, groin shots, and eye pokes.
+Fighters are allowed to strike, grapple, and use submission holds.
+Techniques and Styles
+MMA fighters often specialize in a mix of the following disciplines:
+
+Striking:
+Boxing: Emphasizes punches and footwork.
+Muay Thai: Known for its clinch work, elbows, knees, and kicks.
+Grappling:
+Wrestling: Focuses on takedowns and ground control.
+Brazilian Jiu-Jitsu (BJJ): Specializes in submissions and positional dominance.
+Hybrid Styles:
+Fighters often combine elements from various martial arts to adapt to different opponents.
+Weight Classes
+MMA features multiple weight classes to ensure fair competition:
+
+Flyweight: Up to 125 lbs (56.7 kg)
+Bantamweight: Up to 135 lbs (61.2 kg)
+Featherweight: Up to 145 lbs (65.8 kg)
+Lightweight: Up to 155 lbs (70.3 kg)
+Welterweight: Up to 170 lbs (77.1 kg)
+Middleweight: Up to 185 lbs (83.9 kg)
+Light Heavyweight: Up to 205 lbs (93.0 kg)
+Heavyweight: Up to 265 lbs (120.2 kg)
+Fouls and Penalties
+Illegal Strikes:
+Strikes to the back of the head or spine.
+Kicks to a grounded opponent's head.
+Eye gouging or fish hooking.
+Point Deductions:
+Referees may deduct points for repeated fouls.
+Disqualifications:
+Fighters may be disqualified for intentional illegal actions.
+Key Competitions
+Ultimate Fighting Championship (UFC):
+The largest and most recognized MMA organization, featuring top fighters across all weight classes.
+Hosts high-profile events like UFC Fight Nights and pay-per-view title bouts.
+Bellator MMA:
+Known for its Grand Prix tournaments and focus on emerging fighters.
+ONE Championship:
+Prominent in Asia, highlighting diverse martial arts styles alongside MMA.
+PFL (Professional Fighters League):
+A unique league format with regular-season matches and playoffs.
+Notable Facts
+MMA is one of the fastest-growing sports globally, with a massive fanbase.
+UFC legends include Conor McGregor, Jon Jones, Amanda Nunes, and Khabib Nurmagomedov.
+UFC was founded in 1993 and has since grown into a billion-dollar organization.
+MMA fights often include pre-fight weigh-ins, press conferences, and intense staredowns.
+
+
+Hockey (NHL)
+Overview
+Ice hockey is a fast-paced, high-energy team sport played on ice, where players use sticks to hit a puck into the opponent’s goal. The National Hockey League (NHL) is the premier professional ice hockey league, consisting of 32 teams across the United States and Canada. Known for its thrilling action, skillful plays, and physicality, the NHL culminates in the Stanley Cup Playoffs, one of the most prestigious championships in sports.
+
+Basics of the Sport
+Objective: The goal is to score points by shooting the puck into the opponent's net while defending your own net.
+Duration:
+Games are played in three 20-minute periods with 15-minute intermissions.
+If the score is tied after regulation, a 5-minute sudden-death overtime is played, followed by a shootout if necessary (during the regular season).
+Playoff games continue with sudden-death overtime periods until a winner is determined.
+Playing Field:
+Games are played on an ice rink measuring 200 feet long and 85 feet wide, divided into three zones: defensive, neutral, and offensive.
+Gameplay
+Starting Play:
+
+Games begin with a faceoff at center ice, where the puck is dropped between two opposing players.
+Scoring:
+
+A goal is scored when the puck completely crosses the goal line into the net.
+Goals can be scored during regular play or power plays.
+Rules:
+
+Offside: Players cannot enter the offensive zone before the puck does.
+Icing: A violation occurs when a player shoots the puck across both the center red line and the opposing team's goal line without it being touched.
+Penalties:
+
+Minor Penalty: Results in a 2-minute disadvantage for the penalized team.
+Major Penalty: Results in a 5-minute disadvantage, often for serious infractions.
+Power Play: The opposing team has a numerical advantage during the penalty.
+Positions
+Forwards:
+Center: Leads offensive plays and supports defense.
+Left Wing: Positioned on the left side, focuses on scoring and forechecking.
+Right Wing: Positioned on the right side, contributes to offense and defensive coverage.
+Defensemen:
+Left Defenseman and Right Defenseman: Protect the defensive zone and assist in transitioning to offense.
+Goalie:
+The last line of defense, responsible for stopping shots on goal and maintaining team stability.
+Fouls and Penalties
+Hooking: Using the stick to impede an opponent’s progress.
+Tripping: Causing an opponent to fall by using the stick or body.
+Boarding: Checking an opponent into the boards dangerously.
+Game Misconduct: Ejection from the game for severe infractions, such as fighting or unsportsmanlike behavior.
+Key Competitions
+NHL Regular Season:
+Each team plays 82 games, with points awarded for wins and overtime losses.
+Stanley Cup Playoffs:
+The top 16 teams compete in a best-of-seven elimination tournament to win the Stanley Cup.
+NHL All-Star Game:
+An annual exhibition featuring the league’s top players.
+Winter Classic:
+A yearly outdoor game played in iconic venues, celebrating the roots of ice hockey.
+Notable Facts
+The NHL was founded in 1917 and has grown into one of the major sports leagues in North America.
+The Stanley Cup is the oldest professional sports trophy in North America.
+Legendary players include Wayne Gretzky, Mario Lemieux, and Sidney Crosby.
+The NHL has a global reach, with players from over 20 countries competing in the league.
+
+
+
+Baseball (MLB)
+Overview
+Baseball is a team sport that combines strategy, skill, and athleticism. Known as "America's pastime," it is played professionally in Major League Baseball (MLB), the premier baseball league in the United States and Canada. The MLB consists of 30 teams split into the American League (AL) and the National League (NL). Baseball emphasizes teamwork, pitching duels, and offensive plays, culminating in the annual World Series championship.
+
+Basics of the Sport
+Objective: The goal is to score runs by hitting the ball and advancing around four bases (first, second, third, and home plate) in a counter-clockwise direction.
+Duration: A game consists of nine innings. Each inning includes one offensive and one defensive turn for both teams. If the score is tied after nine innings, extra innings are played until a winner is determined.
+Playing Field: The field is divided into the infield and outfield, with bases placed in a diamond shape. The distance between bases is 90 feet.
+Team Structure: Each team has nine players on the field during defense, including pitchers, catchers, infielders, and outfielders.
+Gameplay
+Starting Play:
+
+The visiting team bats first, while the home team takes the field.
+The pitcher throws the ball to the catcher, aiming to strike out the batter.
+Scoring:
+
+A run is scored when a player safely advances around all four bases and returns to home plate.
+Runs are typically achieved through:
+Hits: The batter hits the ball into fair territory and reaches base safely.
+Home Runs: The ball is hit out of the field's boundary in fair territory, allowing the batter and any base runners to score automatically.
+Outs:
+
+Each team gets three outs per inning. Outs occur through:
+A batter missing three pitches (strikeout).
+A fielder catching the ball before it hits the ground (flyout).
+Tagging a base or player for a forced out.
+Positions
+Pitcher: Throws the ball to the batter, aiming to prevent hits.
+Catcher: Receives pitches and defends home plate.
+Infielders:
+First Baseman: Defends first base.
+Second Baseman: Covers second base and the area between first and second.
+Shortstop: Covers the area between second and third base.
+Third Baseman: Defends third base.
+Outfielders:
+Left Fielder: Covers the left side of the outfield.
+Center Fielder: Covers the center of the outfield and often has the most range.
+Right Fielder: Covers the right side of the outfield.
+Fouls and Penalties
+Foul Ball:
+A hit ball that lands outside the foul lines is considered a foul.
+A batter cannot strike out on a foul ball unless it's a bunt.
+Balk:
+An illegal motion by the pitcher, allowing base runners to advance.
+Interference:
+Occurs when a player hinders an opponent's ability to make a play.
+Key Competitions
+MLB Regular Season:
+Teams play 162 games from April to October.
+MLB Postseason:
+The top teams from both leagues compete in a series of playoff rounds, including the Wild Card, Division Series, and Championship Series.
+World Series:
+The champions of the AL and NL face off in a best-of-seven series to determine the MLB champion.
+All-Star Game:
+An annual exhibition game featuring the best players from both leagues.
+Notable Facts
+MLB was established in 1903, combining the National League (founded in 1876) and the American League (founded in 1901).
+Iconic teams include the New York Yankees, Boston Red Sox, and Los Angeles Dodgers.
+Legendary players include Babe Ruth, Jackie Robinson, Hank Aaron, and Derek Jeter.
+A perfect game, where no opposing player reaches base, is one of the rarest feats in baseball.
+
+
+
+Formula 1 (F1)
+Overview
+Formula 1 (F1) is the pinnacle of motorsport, featuring high-performance single-seater cars and the world’s best drivers. Governed by the Fédération Internationale de l'Automobile (FIA), F1 races are held on circuits around the globe, combining speed, precision, and cutting-edge technology. The F1 World Championship consists of a series of Grand Prix events, with drivers and teams competing for points toward the Drivers' and Constructors' Championships.
+
+Basics of the Sport
+Objective: The goal is to complete the race in the shortest time, with the driver crossing the finish line first earning the most points.
+Duration:
+A race typically lasts between 90 minutes and 2 hours, covering a minimum distance of 305 kilometers (189.5 miles), except at Monaco (260 km).
+Track Types:
+Races are held on a mix of permanent circuits (e.g., Silverstone) and street tracks (e.g., Monaco).
+Teams:
+Each team fields two cars, and their combined performance contributes to the Constructors' Championship.
+Gameplay
+Starting Play:
+
+Races begin with a formation lap to warm up the tires, followed by a standing start where all cars line up on the grid.
+The starting grid is determined by qualifying sessions held before the race.
+Scoring System:
+
+Points are awarded to the top 10 finishers in each race:
+1st place: 25 points
+2nd place: 18 points
+3rd place: 15 points, and so on.
+An additional point is awarded for the fastest lap if the driver finishes in the top 10.
+The driver and team with the most points at the end of the season win their respective championships.
+Key Elements:
+
+Pit Stops: Drivers make mandatory pit stops for tire changes or repairs.
+Tire Management: Teams choose between soft, medium, and hard tires, balancing grip and durability.
+DRS (Drag Reduction System): Allows drivers to reduce aerodynamic drag and increase speed in designated zones.
+Positions
+F1 positions are determined by a driver’s performance and role within their team:
+
+Drivers:
+Compete to achieve the fastest laps and highest race positions.
+Team Principals:
+Oversee team strategy and operations during races.
+Pit Crew:
+Responsible for rapid pit stops and ensuring the car’s mechanical readiness.
+Rules and Penalties
+Track Limits:
+Drivers must stay within the white lines marking the track boundaries.
+Illegal Overtaking:
+Drivers cannot gain positions by cutting corners or leaving the track.
+Penalties:
+Penalties range from time penalties added to race results to disqualification for severe infractions.
+Common penalties include unsafe releases during pit stops and causing collisions.
+Key Competitions
+Grand Prix Events:
+Each F1 season consists of multiple Grand Prix races worldwide, such as the Monaco Grand Prix, British Grand Prix, and Italian Grand Prix.
+Drivers' Championship:
+Awarded to the driver with the most points at the end of the season.
+Constructors' Championship:
+Awarded to the team with the highest combined points from both drivers.
+Notable Facts
+F1 was established in 1950, making it one of the oldest motorsport championships.
+Iconic teams include Ferrari, Mercedes-AMG, McLaren, and Red Bull Racing.
+Legendary drivers include Michael Schumacher, Ayrton Senna, and Lewis Hamilton.
+F1 cars can reach speeds of over 220 mph (354 km/h) and generate up to 5G of lateral force during turns.
+
+
+
+
+Formula 1 (F1)
+Overview
+Formula 1 (F1) is the pinnacle of motorsport, featuring high-performance single-seater cars and the world’s best drivers. Governed by the Fédération Internationale de l'Automobile (FIA), F1 races are held on circuits around the globe, combining speed, precision, and cutting-edge technology. The F1 World Championship consists of a series of Grand Prix events, with drivers and teams competing for points toward the Drivers' and Constructors' Championships.
+
+Basics of the Sport
+Objective: The goal is to complete the race in the shortest time, with the driver crossing the finish line first earning the most points.
+Duration:
+A race typically lasts between 90 minutes and 2 hours, covering a minimum distance of 305 kilometers (189.5 miles), except at Monaco (260 km).
+Track Types:
+Races are held on a mix of permanent circuits (e.g., Silverstone) and street tracks (e.g., Monaco).
+Teams:
+Each team fields two cars, and their combined performance contributes to the Constructors' Championship.
+Gameplay
+Starting Play:
+
+Races begin with a formation lap to warm up the tires, followed by a standing start where all cars line up on the grid.
+The starting grid is determined by qualifying sessions held before the race.
+Scoring System:
+
+Points are awarded to the top 10 finishers in each race:
+1st place: 25 points
+2nd place: 18 points
+3rd place: 15 points, and so on.
+An additional point is awarded for the fastest lap if the driver finishes in the top 10.
+The driver and team with the most points at the end of the season win their respective championships.
+Key Elements:
+
+Pit Stops: Drivers make mandatory pit stops for tire changes or repairs.
+Tire Management: Teams choose between soft, medium, and hard tires, balancing grip and durability.
+DRS (Drag Reduction System): Allows drivers to reduce aerodynamic drag and increase speed in designated zones.
+Positions
+F1 positions are determined by a driver’s performance and role within their team:
+
+Drivers:
+Compete to achieve the fastest laps and highest race positions.
+Team Principals:
+Oversee team strategy and operations during races.
+Pit Crew:
+Responsible for rapid pit stops and ensuring the car’s mechanical readiness.
+Rules and Penalties
+Track Limits:
+Drivers must stay within the white lines marking the track boundaries.
+Illegal Overtaking:
+Drivers cannot gain positions by cutting corners or leaving the track.
+Penalties:
+Penalties range from time penalties added to race results to disqualification for severe infractions.
+Common penalties include unsafe releases during pit stops and causing collisions.
+Key Competitions
+Grand Prix Events:
+Each F1 season consists of multiple Grand Prix races worldwide, such as the Monaco Grand Prix, British Grand Prix, and Italian Grand Prix.
+Drivers' Championship:
+Awarded to the driver with the most points at the end of the season.
+Constructors' Championship:
+Awarded to the team with the highest combined points from both drivers.
+Notable Facts
+F1 was established in 1950, making it one of the oldest motorsport championships.
+Iconic teams include Ferrari, Mercedes-AMG, McLaren, and Red Bull Racing.
+Legendary drivers include Michael Schumacher, Ayrton Senna, and Lewis Hamilton.
+F1 cars can reach speeds of over 220 mph (354 km/h) and generate up to 5G of lateral force during turns.
