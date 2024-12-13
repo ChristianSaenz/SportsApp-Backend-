@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SportsApp.Data;
 using SportsApp.Models;
-using SportsApp.Helpers; 
+using SportsApp.Helpers;
 using System.Threading.Tasks;
 
 namespace SportsApp.Controllers
@@ -20,7 +20,7 @@ namespace SportsApp.Controllers
             _tokenHelper = tokenService;
         }
 
-       
+
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserRegistrationDto registrationDto)
         {
@@ -53,7 +53,7 @@ namespace SportsApp.Controllers
                     .FirstOrDefaultAsync()
             };
 
-            _context.UserRoles.Add(userRole);   
+            _context.UserRoles.Add(userRole);
             await _context.SaveChangesAsync();
 
             return Ok("User registered successfully.");
@@ -80,7 +80,7 @@ namespace SportsApp.Controllers
 
             var roles = user.UserRoles.Select(ur => ur.Role.RoleName).ToList();
 
-            var token = _tokenHelper.GenerateToken(user.Email, roles);
+            var token = _tokenHelper.GenerateToken(user.Email, roles, user.UserId.ToString());
 
             return Ok(new { token });
         }

@@ -25,7 +25,7 @@ namespace SportsApp.Controllers
             _logger = logger;
         }
 
-        [Authorize(Policy = "UserOnly")] 
+        [Authorize(Policy = "UserOnly")]
         [HttpGet("profile")]
         public async Task<ActionResult<User>> GetUserProfile()
         {
@@ -36,7 +36,7 @@ namespace SportsApp.Controllers
 
             var userEmail = User.FindFirst(ClaimTypes.Email)?.Value
                 ?? User.FindFirst(JwtRegisteredClaimNames.Email)?.Value
-                ?? User.FindFirst("email")?.Value; 
+                ?? User.FindFirst("email")?.Value;
 
             if (string.IsNullOrEmpty(userEmail))
             {
@@ -54,7 +54,7 @@ namespace SportsApp.Controllers
             return Ok(user);
         }
 
-        
+
         [Authorize(Policy = "UserOnly")]
         [HttpPut("profile")]
         public async Task<IActionResult> UpdateUserProfile(UserUpdateDto userUpdateDto)
@@ -67,7 +67,7 @@ namespace SportsApp.Controllers
             var userEmail = User.FindFirst(ClaimTypes.Email)?.Value
                 ?? User.FindFirst(JwtRegisteredClaimNames.Email)?.Value
                 ?? User.FindFirst("email")?.Value;
-            
+
             if (string.IsNullOrEmpty(userEmail))
             {
                 return Unauthorized("Email claim not found.");
@@ -80,11 +80,11 @@ namespace SportsApp.Controllers
                 return NotFound("User not found.");
             }
 
-        var hashedPassword = PasswordHelper.HashPassword(userUpdateDto.Password);
+            var hashedPassword = PasswordHelper.HashPassword(userUpdateDto.Password);
 
-       
+
             user.Username = userUpdateDto.Username;
-            user.Password = hashedPassword; 
+            user.Password = hashedPassword;
             user.Email = userUpdateDto.Email;
             user.Firstname = userUpdateDto.Firstname;
             user.Lastname = userUpdateDto.Lastname;
@@ -96,8 +96,8 @@ namespace SportsApp.Controllers
             return Ok("Account updated successfully.");
         }
 
-      
-        [Authorize(Policy = "AdminOnly")] 
+
+        [Authorize(Policy = "AdminOnly")]
         [HttpGet("{userId}/roles")]
         public async Task<ActionResult<string>> GetUserRoles(long userId)
         {
@@ -111,7 +111,7 @@ namespace SportsApp.Controllers
                 return NotFound("User not found.");
             }
 
-           
+
             var roles = user.UserRoles.Select(ur => ur.Role.RoleName).ToList();
             return Ok(roles);
         }

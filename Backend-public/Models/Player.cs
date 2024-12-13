@@ -45,9 +45,6 @@ public partial class Player
     [InverseProperty("Player")]
     public virtual ICollection<Favorite> Favorites { get; set; } = new List<Favorite>();
 
-    [InverseProperty("Player")]
-    public virtual ICollection<PlayerStat> PlayerStats { get; set; } = new List<PlayerStat>();
-
     [ForeignKey("TeamId")]
     [InverseProperty("Players")]
     public virtual Team Team { get; set; } = null!;

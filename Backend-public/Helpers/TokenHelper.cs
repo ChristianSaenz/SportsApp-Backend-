@@ -15,10 +15,9 @@ public class TokenHelper
         _configuration = configuration;
     }
 
-   
-    public string GenerateToken(string email, List<string> roles)
+
+    public string GenerateToken(string email, List<string> roles, String userId)
     {
-        // Get JWT settings from configuration
         var key = _configuration["Jwt:Key"];
         var issuer = _configuration["Jwt:Issuer"];
         var audience = _configuration["Jwt:Audience"];
@@ -26,14 +25,16 @@ public class TokenHelper
 
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-        
+
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Email, email),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()), 
+            new Claim("userId", userId),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+
         };
 
-        
+
         foreach (var role in roles)
         {
             claims.Add(new Claim(ClaimTypes.Role, role));
@@ -43,10 +44,10 @@ public class TokenHelper
             issuer: issuer,
             audience: audience,
             claims: claims,
-            expires: DateTime.Now.AddDays(30), 
+            expires: DateTime.Now.AddDays(30),
             signingCredentials: credentials
         );
 
-        return new JwtSecurityTokenHandler().WriteToken(token); 
+        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }

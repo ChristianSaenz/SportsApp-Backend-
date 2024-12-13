@@ -44,7 +44,3 @@ public partial class User
     public ICollection<Favorite> Favorites { get; set; }
 
 }
-
-
-// Need to add auth to user controller and favorites and make sure they work 
-// If auth is working how its supposed to be then we can move onto connecting flutter to the backend

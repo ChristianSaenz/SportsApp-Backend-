@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SportsApp.Data;
+using SportsApp.DTO_s;
 using SportsApp.Models;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace SportsApp.Controllers
@@ -19,14 +21,16 @@ namespace SportsApp.Controllers
             _context = context;
         }
 
-       
-        [Authorize(Policy = "UserOnly")] 
+
+        [Authorize(Policy = "UserOnly")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Favorite>>> GetFavorites()
+        public async Task<ActionResult<IEnumerable<FavoriteDTO>>> GetFavorites()
         {
-            var userEmail = User.Identity.Name;
+            var userEmail = User?.Claims?.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
             var user = await _context.Users
                 .Include(u => u.Favorites)
+                    .ThenInclude(f => f.Player)
+                        .ThenInclude(p => p.Team)
                 .FirstOrDefaultAsync(u => u.Email == userEmail);
 
             if (user == null)
@@ -34,35 +38,72 @@ namespace SportsApp.Controllers
                 return NotFound("User not found.");
             }
 
-            return Ok(user.Favorites);
+
+            var favoriteDTOs = user.Favorites.Select(f => new FavoriteDTO
+            {
+                FavoriteId = f.FavoriteId,
+                PlayerId = f.PlayerId,
+                FirstName = f.Player.Firstname,
+                LastName = f.Player.Lastname,
+                Age = f.Player.Age,
+                Height = f.Player.Height,
+                Weight = f.Player.Weight,
+                Position = f.Player.Postion,
+                TeamName = f.Player.Team.TeamName
+            }).ToList();
+
+            return Ok(favoriteDTOs);
         }
 
-       
-        [Authorize(Policy = "UserOnly")] 
+
+        [Authorize(Policy = "UserOnly")]
         [HttpPost]
-        public async Task<IActionResult> AddFavorite(Favorite favorite)
+        public async Task<IActionResult> AddFavorite([FromBody] AddFavoriteDTO favoriteDto)
         {
-            var userEmail = User.Identity.Name; 
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+            if (favoriteDto == null || favoriteDto.PlayerId <= 0)
+            {
+                return BadRequest("Invalid favorite data.");
+            }
+
+            var player = await _context.Players.FindAsync(favoriteDto.PlayerId);
+            if (player == null)
+            {
+                return NotFound("Player not found.");
+            }
+
+            var userEmail = User?.Claims?.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+            var user = await _context.Users.Include(u => u.Favorites).FirstOrDefaultAsync(u => u.Email == userEmail);
 
             if (user == null)
             {
                 return NotFound("User not found.");
             }
 
-            // Add favorite for the user
-            user.Favorites.Add(favorite);
+            if (user.Favorites.Any(f => f.PlayerId == player.PlayerId))
+            {
+                return BadRequest("Player is already a favorite.");
+            }
+
+            var favorite = new Favorite
+            {
+                PlayerId = player.PlayerId,
+                UserId = user.UserId,
+            };
+
+            _context.Favorites.Add(favorite);
             await _context.SaveChangesAsync();
 
-            return Ok("Favorite added.");
+            return Ok(new { favoriteId = favorite.FavoriteId });
         }
 
-        
-        [Authorize(Policy = "UserOnly")] 
+
+
+
+        [Authorize(Policy = "UserOnly")]
         [HttpDelete("{favoriteId}")]
         public async Task<IActionResult> RemoveFavorite(int favoriteId)
         {
-            var userEmail = User.Identity.Name;
+            var userEmail = User?.Claims?.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
             var user = await _context.Users
                 .Include(u => u.Favorites)
                 .FirstOrDefaultAsync(u => u.Email == userEmail);
@@ -85,5 +126,6 @@ namespace SportsApp.Controllers
         }
     }
 }
+
 
 

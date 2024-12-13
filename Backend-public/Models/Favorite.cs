@@ -19,13 +19,11 @@ public partial class Favorite
     [Column("player_id")]
     public long PlayerId { get; set; }
 
-    [ForeignKey("FavoriteId")]
+    [ForeignKey("UserId")]
     [InverseProperty("Favorites")]
-    public virtual User FavoriteNavigation { get; set; } = null!;
+    public virtual User User { get; set; } = null!;
 
     [ForeignKey("PlayerId")]
     [InverseProperty("Favorites")]
     public virtual Player Player { get; set; } = null!;
-    public User User { get; set; }
-
 }

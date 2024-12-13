@@ -10,7 +10,7 @@ namespace SportsApp.Data
     {
         public SportsAppDbContext CreateDbContext(string[] args)
         {
-           
+
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
@@ -18,10 +18,10 @@ namespace SportsApp.Data
                 .AddUserSecrets<Program>()
                 .Build();
 
-            
+
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-            
+
             var optionsBuilder = new DbContextOptionsBuilder<SportsAppDbContext>();
             optionsBuilder.UseSqlServer(connectionString);
 

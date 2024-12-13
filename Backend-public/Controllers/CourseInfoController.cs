@@ -1,12 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using SportsApp.Data;
 using SportsApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace SportsApp.Controllers
 {
@@ -15,99 +11,67 @@ namespace SportsApp.Controllers
     public class CourseInfoController : ControllerBase
     {
         private readonly SportsAppDbContext _context;
-        private readonly ILogger<CourseInfoController> _logger;
 
-        public CourseInfoController(SportsAppDbContext context, ILogger<CourseInfoController> logger)
+        public CourseInfoController(SportsAppDbContext context)
         {
             _context = context;
-            _logger = logger;
         }
 
         [AllowAnonymous]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CourseInfo>>> GetCourses()
+        public async Task<ActionResult<IEnumerable<Course>>> GetCourses()
         {
-            _logger.LogInformation("Fetching all courses.");
-            try
-            {
-                var courses = await _context.CourseInfos.ToListAsync();
-                return Ok(courses);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An error occurred while fetching courses.");
-                return StatusCode(500, "Internal server error");
-            }
+            return await _context.CourseInfos.ToListAsync();
         }
 
         [AllowAnonymous]
         [HttpGet("{id}")]
-        public async Task<ActionResult<CourseInfo>> GetCourseInfo(long id)
+        public async Task<ActionResult<Course>> GetCourseInfo(int id)
         {
-            _logger.LogInformation("Fetching course info with ID {CourseId}.", id);
-            try
-            {
-                var courseInfo = await _context.CourseInfos.FindAsync(id);
+            var courseInfo = await _context.CourseInfos.FindAsync(id);
 
-                if (courseInfo == null)
-                {
-                    _logger.LogWarning("Course info with ID {CourseId} not found.", id);
-                    return NotFound();
-                }
-
-                return Ok(courseInfo);
-            }
-            catch (Exception ex)
+            if (courseInfo == null)
             {
-                _logger.LogError(ex, "An error occurred while fetching course info with ID {CourseId}.", id);
-                return StatusCode(500, "Internal server error");
+                return NotFound();
             }
+
+            return courseInfo;
         }
+
+        [AllowAnonymous]
+        [HttpGet("{sportId}/course")]
+        public async Task<ActionResult<List<Course>>> GetCourseBySportId(int sportId)
+        {
+            var courseInfo = await _context.CourseInfos
+                                           .Where(c => c.SportId == sportId)
+                                           .ToListAsync();
+
+            if (courseInfo == null || courseInfo.Count == 0)
+            {
+                return NotFound($"No courses found for sport ID {sportId}");
+            }
+
+            return Ok(courseInfo);
+        }
+
 
         [Authorize(Policy = "AdminOnly")]
         [HttpPost]
-        public async Task<ActionResult<CourseInfo>> CreateCourseInfo(CourseInfo courseInfo)
+        public async Task<ActionResult<Course>> CreateCourseInfo(Course courseInfo)
         {
-            _logger.LogInformation("Creating a new course info.");
+            _context.CourseInfos.Add(courseInfo);
+            await _context.SaveChangesAsync();
 
-            if (!ModelState.IsValid)
-            {
-                _logger.LogWarning("Invalid course info data received.");
-                return BadRequest(ModelState);
-            }
-
-            try
-            {
-                _context.CourseInfos.Add(courseInfo);
-                await _context.SaveChangesAsync();
-
-                _logger.LogInformation("Course info created with ID {CourseId}.", courseInfo.CourseId);
-
-                return CreatedAtAction(nameof(GetCourseInfo), new { id = courseInfo.CourseId }, courseInfo);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An error occurred while creating a new course info.");
-                return StatusCode(500, "Internal server error.");
-            }
+            return CreatedAtAction(nameof(GetCourseInfo), new { id = courseInfo.CourseId }, courseInfo);
         }
 
-        [Authorize(Policy = "AdminOnly")] 
+        [Authorize(Policy = "AdminOnly")]
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCourseInfo(long id, CourseInfo courseInfo)
+        public async Task<IActionResult> UpdateCourseInfo(int id, Course courseInfo)
         {
-            _logger.LogInformation("Updating course info with ID {CourseId}.", id);
-
             if (id != courseInfo.CourseId)
             {
-                _logger.LogWarning("ID in route does not match ID in course info object.");
-                return BadRequest("ID mismatch.");
-            }
-
-            if (!ModelState.IsValid)
-            {
-                _logger.LogWarning("Invalid course info data received.");
-                return BadRequest(ModelState);
+                return BadRequest();
             }
 
             _context.Entry(courseInfo).State = EntityState.Modified;
@@ -115,61 +79,44 @@ namespace SportsApp.Controllers
             try
             {
                 await _context.SaveChangesAsync();
-                _logger.LogInformation("Course info with ID {CourseId} updated successfully.", id);
-                return NoContent();
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (!CourseInfoExists(id))
                 {
-                    _logger.LogWarning("Course info with ID {CourseId} not found during update.", id);
                     return NotFound();
                 }
                 else
                 {
-                    _logger.LogError("Concurrency error occurred while updating course info with ID {CourseId}.", id);
                     throw;
                 }
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An error occurred while updating course info with ID {CourseId}.", id);
-                return StatusCode(500, "Internal server error");
-            }
+
+            return NoContent();
         }
 
-        [Authorize(Policy = "AdminOnly")] 
+        [Authorize(Policy = "AdminOnly")]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCourseInfo(long id)
+        public async Task<IActionResult> DeleteCourseInfo(int id)
         {
-            _logger.LogInformation("Deleting course info with ID {CourseId}.", id);
-            try
+            var courseInfo = await _context.CourseInfos.FindAsync(id);
+            if (courseInfo == null)
             {
-                var courseInfo = await _context.CourseInfos.FindAsync(id);
-                if (courseInfo == null)
-                {
-                    _logger.LogWarning("Course info with ID {CourseId} not found for deletion.", id);
-                    return NotFound();
-                }
-
-                _context.CourseInfos.Remove(courseInfo);
-                await _context.SaveChangesAsync();
-
-                _logger.LogInformation("Course info with ID {CourseId} deleted successfully.", id);
-                return NoContent();
+                return NotFound();
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An error occurred while deleting course info with ID {CourseId}.", id);
-                return StatusCode(500, "Internal server error");
-            }
+
+            _context.CourseInfos.Remove(courseInfo);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
 
-        private bool CourseInfoExists(long id)
+        private bool CourseInfoExists(int id)
         {
             return _context.CourseInfos.Any(e => e.CourseId == id);
         }
     }
 }
+
 
 

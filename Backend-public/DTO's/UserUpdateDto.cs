@@ -9,7 +9,7 @@ namespace SportsApp.DTO_s
 
         [Required]
         public string Email { get; set; }
-        
+
         [Required]
         public string Lastname { get; set; }
 

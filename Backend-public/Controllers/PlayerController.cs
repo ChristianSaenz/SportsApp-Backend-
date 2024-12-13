@@ -17,12 +17,15 @@ namespace SportsApp.Controllers
         {
             _context = context;
         }
+
+
         [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Player>>> GetPlayers()
         {
             return await _context.Players.ToListAsync();
         }
+
 
         [AllowAnonymous]
         [HttpGet("{id}")]
@@ -37,6 +40,24 @@ namespace SportsApp.Controllers
 
             return player;
         }
+
+        [AllowAnonymous]
+        [HttpGet("{teamId}/players")]
+        public async Task<ActionResult<IEnumerable<Player>>> GetPlayersByTeamId(int teamId)  // Correct method name and parameter
+        {
+            var players = await _context.Players
+                                         .Where(p => p.TeamId == teamId)
+                                         .ToListAsync();
+
+            if (players == null || players.Count == 0)
+            {
+                return NotFound($"No players found for team ID: {teamId}");
+            }
+
+            return Ok(players);
+        }
+
+
         [Authorize(Policy = "AdminOnly")]
         [HttpPost]
         public async Task<ActionResult<Player>> CreatePlayer(Player player)
@@ -47,7 +68,7 @@ namespace SportsApp.Controllers
             return CreatedAtAction(nameof(GetPlayer), new { id = player.PlayerId }, player);
         }
 
-        [Authorize(Policy = "AdminOnly")] 
+        [Authorize(Policy = "AdminOnly")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePlayer(int id, Player player)
         {
@@ -77,7 +98,7 @@ namespace SportsApp.Controllers
             return NoContent();
         }
 
-        [Authorize(Policy = "AdminOnly")] 
+        [Authorize(Policy = "AdminOnly")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePlayer(int id)
         {
@@ -101,4 +122,3 @@ namespace SportsApp.Controllers
 
 
 }
-

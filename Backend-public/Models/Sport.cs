@@ -19,11 +19,9 @@ public partial class Sport
     public string? SportName { get; set; }
 
     [InverseProperty("Sport")]
-    public virtual ICollection<CourseInfo> CourseInfos { get; set; } = new List<CourseInfo>();
+    public virtual ICollection<Course> CourseInfos { get; set; } = new List<Course>();
 
     [InverseProperty("Sport")]
     public virtual ICollection<League> Leagues { get; set; } = new List<League>();
 
-    [InverseProperty("PlayerNavigation")]
-    public virtual ICollection<PlayerStat> PlayerStats { get; set; } = new List<PlayerStat>();
 }

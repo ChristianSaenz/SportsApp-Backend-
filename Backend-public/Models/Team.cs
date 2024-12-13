@@ -24,12 +24,6 @@ public partial class Team
     [InverseProperty("Teams")]
     public virtual League League { get; set; } = null!;
 
-    [InverseProperty("AwayTeam")]
-    public virtual ICollection<Match> MatchAwayTeams { get; set; } = new List<Match>();
-
-    [InverseProperty("HomeTeam")]
-    public virtual ICollection<Match> MatchHomeTeams { get; set; } = new List<Match>();
-
     [InverseProperty("Team")]
     public virtual ICollection<Player> Players { get; set; } = new List<Player>();
 }

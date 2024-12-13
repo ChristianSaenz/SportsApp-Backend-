@@ -6,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SportsApp.Models;
 
-[Table("course_info")]
-public partial class CourseInfo
+[Table("course")]
+public partial class Course
 {
     [Key]
     [Column("course_id")]
@@ -21,11 +21,11 @@ public partial class CourseInfo
     [Unicode(false)]
     public string? Title { get; set; }
 
-    [Column("description")]
+    [Column("content")]
     [StringLength(50)]
     public string? Description { get; set; }
 
-    [Column("date", TypeName = "datetime")]
+    [Column("createdAt", TypeName = "datetime")]
     public DateTime? Date { get; set; }
 
     [ForeignKey("SportId")]
